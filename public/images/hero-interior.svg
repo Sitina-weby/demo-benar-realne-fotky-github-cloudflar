@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#26332a"/>
+      <stop offset="100%" stop-color="#34452f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)"/>
+  <rect x="24" y="24" width="1152" height="752" fill="none" stroke="#b8863b" stroke-width="3" stroke-dasharray="10 8" opacity="0.6"/>
+  
+        <rect x="490" y="370" width="220" height="90" rx="6" fill="none" stroke="#d9a95c" stroke-width="6" opacity="0.5"/>
+        <rect x="510" y="310" width="60" height="60" rx="4" fill="#d9a95c" opacity="0.3"/>
+        <rect x="630" y="310" width="60" height="60" rx="4" fill="#d9a95c" opacity="0.3"/>
+      
+  <text text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="30" font-weight="700" fill="#faf3e8">
+    <tspan x="600" y="642">DEMO FOTO — interiér restaurace</tspan><tspan x="600" y="676">Benar</tspan>
+  </text>
+  <text x="600" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="2" fill="#d9a95c" opacity="0.85">RESTAURACE BENAR — UKÁZKOVÁ FOTOGRAFIE</text>
+</svg>

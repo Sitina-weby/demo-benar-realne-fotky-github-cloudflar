@@ -1,0 +1,76 @@
+---
+import { siteConfig } from "../data/site.config";
+
+const { gallery } = siteConfig;
+---
+
+<section class="section section--alt" id="galerie">
+  <div class="container">
+    <p class="eyebrow">Atmosféra u nás</p>
+    <h2>Galerie</h2>
+    <p class="gallery__note">{gallery.note}</p>
+
+    <div class="gallery__grid">
+      {
+        gallery.images.map((img) =>
+          img.webp && img.jpg ? (
+            <figure class="gallery__item">
+              <picture>
+                <source srcset={img.webp} type="image/webp" />
+                <img src={img.jpg} alt={img.alt} loading="lazy" />
+              </picture>
+            </figure>
+          ) : (
+            <figure class="gallery__item">
+              <img src={img.src} alt={img.alt} loading="lazy" />
+            </figure>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery__note {
+    font-size: var(--fs-sm);
+    font-style: italic;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-8);
+  }
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  .gallery__item {
+    margin: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .gallery__item picture {
+    display: block;
+  }
+  .gallery__item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.25s ease;
+  }
+  .gallery__item:hover img {
+    transform: scale(1.04);
+  }
+
+  @media (min-width: 640px) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 992px) {
+    .gallery__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

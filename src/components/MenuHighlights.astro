@@ -1,0 +1,98 @@
+---
+import { siteConfig } from "../data/site.config";
+
+const { highlights } = siteConfig;
+---
+
+<section class="section" id="jidelni-listek">
+  <div class="container">
+    <p class="eyebrow">Z jídelního lístku</p>
+    <h2>Naše speciality</h2>
+    <p class="highlights__intro">
+      Výběr toho nejlepšího z našeho stálého lístku — plný jídelní lístek najdete
+      <a href="/jidelni-listek">na samostatné stránce</a>.
+    </p>
+
+    <div class="highlights__grid">
+      {
+        highlights.map((item) => (
+          <article class="highlights__card card">
+            <img src={item.image.src} alt={item.image.alt} loading="lazy" class="highlights__img" />
+            <div class="highlights__body">
+              <h3>{item.name}</h3>
+              <p class="highlights__desc">{item.description}</p>
+              <div class="highlights__meta">
+                <span>{item.weight}</span>
+                <span class="highlights__price">{item.price} Kč</span>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="highlights__cta">
+      <a href="/jidelni-listek" class="btn btn-outline">Zobrazit celý jídelní lístek</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlights__intro {
+    max-width: 60ch;
+    margin-bottom: var(--space-8);
+  }
+  .highlights__grid {
+    display: grid;
+    gap: var(--space-6);
+    grid-template-columns: 1fr;
+  }
+  .highlights__card {
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .highlights__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+  .highlights__body {
+    padding: var(--space-4) var(--space-6) var(--space-6);
+  }
+  .highlights__body h3 {
+    margin-bottom: var(--space-2);
+  }
+  .highlights__desc {
+    font-size: var(--fs-sm);
+    color: var(--color-ink-soft);
+  }
+  .highlights__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-sm);
+  }
+  .highlights__price {
+    font-weight: 700;
+    color: var(--color-brass-dark);
+    font-size: var(--fs-lg);
+  }
+  .highlights__cta {
+    margin-top: var(--space-8);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .highlights__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 992px) {
+    .highlights__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

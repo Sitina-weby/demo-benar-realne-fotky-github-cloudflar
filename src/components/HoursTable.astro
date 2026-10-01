@@ -1,0 +1,62 @@
+---
+// HoursTable — plná tabulka otevírací doby (druhá úroveň, vedle HoursBadge).
+import { siteConfig } from "../data/site.config";
+import { DAY_LABEL_CS, DAY_ORDER } from "../utils/hours";
+
+const { schedule, kitchenNote, note } = siteConfig.hours;
+---
+
+<div class="hours-table-wrap card">
+  <h3>Otevírací doba</h3>
+  <table class="hours-table">
+    <tbody>
+      {
+        DAY_ORDER.map((day) => (
+          <tr>
+            <th scope="row">{DAY_LABEL_CS[day]}</th>
+            <td>{schedule[day]}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <p class="hours-kitchen-note">{kitchenNote}</p>
+  <p class="hours-disclaimer">{note}</p>
+</div>
+
+<style>
+  .hours-table-wrap h3 {
+    margin-bottom: var(--space-4);
+  }
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+  }
+  .hours-table th,
+  .hours-table td {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-bg-alt);
+  }
+  .hours-table th {
+    font-weight: 600;
+    color: var(--color-ink-soft);
+    text-transform: capitalize;
+  }
+  .hours-table tr:last-child th,
+  .hours-table tr:last-child td {
+    border-bottom: none;
+  }
+  .hours-kitchen-note {
+    margin-top: var(--space-4);
+    font-size: var(--fs-sm);
+    color: var(--color-ink-soft);
+  }
+  .hours-disclaimer {
+    font-size: var(--fs-xs);
+    color: var(--color-ink-soft);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+</style>

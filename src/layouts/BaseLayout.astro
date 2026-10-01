@@ -1,0 +1,29 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "../data/site.config";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = siteConfig.hero.subheadline } = Astro.props;
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a href="#hlavni-obsah" class="skip-link">Přeskočit na hlavní obsah</a>
+    <slot />
+  </body>
+</html>

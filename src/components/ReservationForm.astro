@@ -1,0 +1,191 @@
+---
+// DEMO: formulář validuje a simuluje odeslání — žádná data se nikam
+// neodesílají (bez backendu). Po úspěšné validaci se zobrazí demo
+// potvrzovací zpráva. Validace používá stejnou funkci validateReservation
+// jako testy v src/utils/reservationValidation.test.ts, takže chování
+// formuláře odpovídá otestované logice.
+import { siteConfig } from "../data/site.config";
+
+const { reservation } = siteConfig;
+---
+
+<section class="section" id="rezervace">
+  <div class="container reservation__grid">
+    <div class="reservation__intro">
+      <p class="eyebrow">Rezervace stolu</p>
+      <h2>Zarezervujte si stůl</h2>
+      <p>{reservation.intro}</p>
+      <p>
+        <a href={`tel:+420${reservation.phone.replace(/\s/g, "")}`} class="btn btn-primary">
+          📞 Zavolat {reservation.phone}
+        </a>
+      </p>
+    </div>
+
+    <form class="reservation__form card" id="reservation-form" novalidate>
+      <p class="reservation__demo-note">
+        DEMO formulář — po odeslání se pouze ověří vyplnění a zobrazí se ukázkové potvrzení,
+        rezervace se nikam neposílá.
+      </p>
+
+      <div class="field">
+        <label for="res-name">Jméno a příjmení *</label>
+        <input type="text" id="res-name" name="name" autocomplete="name" />
+        <p class="field__error" data-error-for="name"></p>
+      </div>
+
+      <div class="field">
+        <label for="res-phone">Telefon *</label>
+        <input type="tel" id="res-phone" name="phone" autocomplete="tel" placeholder="476 000 229" />
+        <p class="field__error" data-error-for="phone"></p>
+      </div>
+
+      <div class="field field--row">
+        <div class="field">
+          <label for="res-date">Datum *</label>
+          <input type="date" id="res-date" name="date" />
+          <p class="field__error" data-error-for="date"></p>
+        </div>
+        <div class="field">
+          <label for="res-time">Čas *</label>
+          <input type="time" id="res-time" name="time" />
+          <p class="field__error" data-error-for="time"></p>
+        </div>
+        <div class="field">
+          <label for="res-guests">Počet osob *</label>
+          <input type="number" id="res-guests" name="guests" min="1" max="30" />
+          <p class="field__error" data-error-for="guests"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="res-note">Poznámka</label>
+        <textarea id="res-note" name="note" rows="3" placeholder="Např. dětská židlička, výročí…"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary reservation__submit">Odeslat rezervaci</button>
+
+      <p class="reservation__success" data-success hidden>
+        ✅ Děkujeme! Toto je demo — rezervace nebyla reálně odeslána. V ostrém provozu by nyní
+        restaurace obdržela e-mail/SMS a rezervaci potvrdila.
+      </p>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { validateReservation } from "../utils/reservationValidation";
+  import type { ReservationFieldErrors } from "../utils/reservationValidation";
+
+  const form = document.getElementById("reservation-form") as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const input = {
+        name: String(formData.get("name") ?? ""),
+        phone: String(formData.get("phone") ?? ""),
+        date: String(formData.get("date") ?? ""),
+        time: String(formData.get("time") ?? ""),
+        guests: String(formData.get("guests") ?? ""),
+        note: String(formData.get("note") ?? ""),
+      };
+
+      // DEMO: formulář validuje a simuluje odeslání — žádný fetch/backend,
+      // pouze klientská validace přes validateReservation a zobrazení
+      // ukázkového potvrzení.
+      const result = validateReservation(input, new Date());
+
+      const fields: (keyof ReservationFieldErrors)[] = ["name", "phone", "date", "time", "guests"];
+      fields.forEach((field) => {
+        const errorEl = form.querySelector<HTMLElement>(`[data-error-for="${field}"]`);
+        const inputEl = form.querySelector<HTMLElement>(`[name="${field}"]`);
+        const message = result.errors[field];
+        if (errorEl) errorEl.textContent = message ?? "";
+        if (inputEl) inputEl.classList.toggle("field__input--invalid", Boolean(message));
+      });
+
+      const successEl = form.querySelector<HTMLElement>("[data-success]");
+      if (result.valid) {
+        successEl?.removeAttribute("hidden");
+        form.reset();
+      } else {
+        successEl?.setAttribute("hidden", "");
+      }
+    });
+  }
+</script>
+
+<style>
+  .reservation__grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+  .reservation__intro p {
+    margin-bottom: var(--space-4);
+  }
+  .reservation__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .reservation__demo-note {
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted, #666);
+    margin: 0;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    flex: 1;
+  }
+  .field label {
+    font-weight: 600;
+    font-size: var(--fs-sm);
+  }
+  .field input,
+  .field textarea {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border, #ccc);
+    border-radius: var(--radius-sm, 6px);
+    font: inherit;
+  }
+  .field input.field__input--invalid,
+  .field textarea.field__input--invalid {
+    border-color: var(--color-closed, #b3261e);
+  }
+  .field__error {
+    color: var(--color-closed, #b3261e);
+    font-size: var(--fs-xs);
+    min-height: 1em;
+    margin: 0;
+  }
+  .field--row {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .reservation__submit {
+    align-self: flex-start;
+  }
+  .reservation__success {
+    background: var(--color-open, #2e7d32);
+    color: #fff;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm, 6px);
+    font-size: var(--fs-sm);
+  }
+
+  @media (min-width: 640px) {
+    .field--row {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .reservation__grid {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+</style>

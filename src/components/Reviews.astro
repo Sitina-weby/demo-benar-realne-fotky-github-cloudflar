@@ -1,0 +1,58 @@
+---
+import { siteConfig } from "../data/site.config";
+
+const { reviews, ratingsSummary } = siteConfig;
+---
+
+<section class="section section--alt" id="recenze">
+  <div class="container">
+    <p class="eyebrow">Co říkají hosté</p>
+    <h2>Recenze</h2>
+    <p class="reviews__summary">
+      Facebook doporučení {ratingsSummary.facebookRecommend} ({ratingsSummary.facebookReviewCount} hodnocení) ·
+      Tripadvisor {ratingsSummary.tripadvisor}/5 · Firmy.cz {ratingsSummary.firmyCz}/5
+    </p>
+
+    <div class="reviews__grid">
+      {
+        reviews.map((r) => (
+          <article class="reviews__card card">
+            <p class="reviews__text">&bdquo;{r.text}&ldquo;</p>
+            <p class="reviews__name">{r.name}</p>
+          </article>
+        ))
+      }
+    </div>
+    <p class="reviews__note">({ratingsSummary.sourceNote})</p>
+  </div>
+</section>
+
+<style>
+  .reviews__summary {
+    margin-bottom: var(--space-6);
+    color: var(--color-text-muted, #666);
+  }
+  .reviews__grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .reviews__text {
+    font-style: italic;
+    margin-bottom: var(--space-3);
+  }
+  .reviews__name {
+    font-weight: 600;
+    margin: 0;
+  }
+  .reviews__note {
+    margin-top: var(--space-4);
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted, #666);
+  }
+
+  @media (min-width: 768px) {
+    .reviews__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
