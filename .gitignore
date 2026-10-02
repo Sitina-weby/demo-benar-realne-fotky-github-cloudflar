@@ -22,3 +22,7 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 .jarvis-demo-build.log
+
+# raw source photos from Google Drive (kept only locally; see docs/drive-photo-verification.md for provenance)
+_drive_download/
+tmp_proc/
