@@ -75,10 +75,12 @@ export const siteConfig = {
     subheadline:
       "Poctivá česká kuchyně a steaky od roku 2004 — v přízemí Docela velkého divadla v Litvínově",
     images: [
-      { src: "/images/hero-interior.svg", alt: "DEMO FOTO — interiér restaurace Benar s dřevěným obložením a reflektory jeviště" },
-      { src: "/images/hero-steak.svg", alt: "DEMO FOTO — hovězí steak s přílohou na talíři" },
-      { src: "/images/hero-garden.svg", alt: "DEMO FOTO — letní zahrádka restaurace Benar" },
-    ],
+      {
+        webp: "/images/benar/hero-1920.webp",
+        jpg: "/images/benar/hero-1920.jpg",
+        alt: "Restaurace Benar — fotografie prostoru",
+      },
+    ] as GalleryImage[],
     bullets: [
       "Denní obědové menu každý všední den",
       "Zahrádka, dětský koutek a vlastní parkoviště",
@@ -254,18 +256,20 @@ export const siteConfig = {
   },
 
   gallery: {
-    note: "Ukázkové fotografie — reálné foto interiéru a jídel dodá restaurace",
+    note:
+      "Reálné fotografie restaurace Benar. Výběr a pořadí fotek je automatický " +
+      "(bez ruční vizuální kurace) — pokud budete chtít přesnější popisky nebo jiné pořadí, " +
+      "stačí fotky podle skutečného obsahu přejmenovat a upravit alt texty níže.",
     images: [
-      { src: "/images/gallery-01-interior.svg", alt: "DEMO FOTO — hlavní jídelní sál restaurace" },
-      { src: "/images/gallery-02-stage.svg", alt: "DEMO FOTO — malé divadelní pódium v sále restaurace" },
-      { src: "/images/gallery-03-garden.svg", alt: "DEMO FOTO — letní zahrádka s dřevěným posezením" },
-      { src: "/images/gallery-04-steak.svg", alt: "DEMO FOTO — servírovaný hovězí steak" },
-      { src: "/images/gallery-05-svickova.svg", alt: "DEMO FOTO — svíčková na smetaně s knedlíkem" },
-      { src: "/images/gallery-06-bar.svg", alt: "DEMO FOTO — výčep a barový pult" },
-      { src: "/images/gallery-07-salonek.svg", alt: "DEMO FOTO — nekuřácký salonek pro oslavy" },
-      { src: "/images/gallery-08-detsky-koutek.svg", alt: "DEMO FOTO — dětský koutek v restauraci" },
-      { src: "/images/gallery-09-dezert.svg", alt: "DEMO FOTO — domácí dezert dne" },
-      { src: "/images/gallery-10-exterier.svg", alt: "DEMO FOTO — vstup do budovy divadla a restaurace" },
+      { webp: "/images/benar/gallery-1-800.webp", jpg: "/images/benar/gallery-1-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-2-800.webp", jpg: "/images/benar/gallery-2-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-3-800.webp", jpg: "/images/benar/gallery-3-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-4-800.webp", jpg: "/images/benar/gallery-4-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-5-800.webp", jpg: "/images/benar/gallery-5-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-6-800.webp", jpg: "/images/benar/gallery-6-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-7-800.webp", jpg: "/images/benar/gallery-7-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-8-800.webp", jpg: "/images/benar/gallery-8-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-9-800.webp", jpg: "/images/benar/gallery-9-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
     ] as GalleryImage[],
   },
 
@@ -354,7 +358,7 @@ export const siteConfig = {
 
   demoNotice: {
     text:
-      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Fotografie jsou ilustrační, denní menu a recenze jsou vzorové. Finální web pro Restauraci Benar by obsahoval reálné fotografie a aktuální obsah dodaný restaurací.",
+      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Fotografie restaurace jsou reálné, denní menu a recenze jsou vzorové. Finální web pro Restauraci Benar by obsahoval aktuální obsah dodaný restaurací.",
   },
 };
 

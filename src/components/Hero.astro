@@ -8,7 +8,14 @@ const [mainImage] = hero.images;
 
 <section class="hero" id="hero">
   <div class="hero__bg">
-    <img src={mainImage.src} alt={mainImage.alt} class="hero__bg-img" loading="eager" />
+    {mainImage.webp && mainImage.jpg ? (
+      <picture>
+        <source srcset={mainImage.webp} type="image/webp" />
+        <img src={mainImage.jpg} alt={mainImage.alt} class="hero__bg-img" loading="eager" />
+      </picture>
+    ) : (
+      <img src={mainImage.src} alt={mainImage.alt} class="hero__bg-img" loading="eager" />
+    )}
     <div class="hero__overlay"></div>
   </div>
 
@@ -51,6 +58,11 @@ const [mainImage] = hero.images;
     position: absolute;
     inset: 0;
     z-index: 0;
+  }
+  .hero__bg picture {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .hero__bg-img {
     width: 100%;

@@ -140,63 +140,49 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 2. **Stálý jídelní lístek** je reprezentativní výběr **18 položek v 11
    kategoriích**, sestavený podle struktury kategorií uvedené na Firmy.cz.
    Názvy jídel a texty jsou vlastní formulace, ne kopie cizího obsahu.
-3. **Galerie reálných fotografií — stažení z Google Drive se nezdařilo,
-   protože složka je nastavena jako privátní.** Odkaz od Vlastimila na
-   reálné fotky restaurace (Google Drive složka,
+3. **Galerie reálných fotografií — Google Drive přístup opraven, fotky
+   úspěšně staženy a integrovány (9/9).** Odkaz od Vlastimila na reálné
+   fotky restaurace (Google Drive složka,
    [`1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y`](https://drive.google.com/drive/folders/1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y))
-   **vyžaduje přihlášení Google účtem** a není nastavena na „Komukoli s
-   odkazem" — ověřeno opakovaně **4 nezávislými metodami s přesnými HTTP
-   kódy**, úplný log viz [`docs/google-drive-download-attempt.md`](docs/google-drive-download-attempt.md)
-   (commit `893f2a6`):
-   1. přímý `curl` na folder URL → přesměrování (2 redirecty) na
-      `accounts.google.com` přihlašovací stránku, `<title>Google Drive:
-      Sign-in</title>`, 0 file ID v HTML; zkušební embed endpoint
-      `embeddedfolderview` → **HTTP 401** přímo,
-   2. `curl -sIL` na `uc?export=download&id=...` → **HTTP 200**, ale
-      finální URL opět `accounts.google.com` (login wall),
-   3. nástroj **`gdown` 6.4.1** (`gdown --folder <url>`) → explicitní
-      **HTTP 401** s hláškou nástroje *„You may need to change the
-      permission to 'Anyone with the link'"*,
-   4. Google Drive REST API v3 bez klíče → **HTTP 403**
-      `PERMISSION_DENIED` (doplňkový diagnostický test).
+   byl původně nastaven jako privátní a stažení se opakovaně nezdařilo (4
+   nezávislé metody, viz dřívější log v
+   [`docs/google-drive-download-attempt.md`](docs/google-drive-download-attempt.md),
+   commit `893f2a6`, pro historii). **Vlastimil sdílení opravil na
+   „Komukoli s odkazem"** a v navazujícím běhu se podařilo stáhnout
+   **všech 9 fotek ze složky úspěšně**.
 
-   Závěr: anonymní/strojové stažení obsahu složky bez přihlašovacích
-   údajů vlastníka **není technicky možné** — toto není chyba na straně
-   týmu ani sandboxu, je to mimo jeho kontrolu. Galerie proto **stále
-   obsahuje 10 SVG placeholderů**
-   (`public/images/gallery-01-interior.svg` … `gallery-10-exterier.svg`),
-   jasně označených textem „DEMO FOTO" v `alt` atributu, a poznámka v
-   galerii (`gallery.note` v `site.config.ts`) tomu transparentně
-   odpovídá: *„Ukázkové fotografie — reálné foto interiéru a jídel dodá
-   restaurace"*. **Žádné cizí fotografie** (z Firmy.cz, Facebooku ani
-   jiných webů) nejsou v projektu použity a **žádné AI generované
-   fotografie** se nepoužily ani v této fázi — v sandboxu není k
-   dispozici nástroj pro generování obrázků, takže zůstávají SVG
-   placeholdery jako jediná korektní, transparentně označená varianta.
+   Fotky byly zpracovány a zapojeny do webu:
+   - Každá z **9 fotek** je uložena ve dvou formátech (**WebP** + **JPEG
+     fallback**) a dvou velikostech (**800 px** pro galerii, **1600 px**
+     pro případné zvětšení/retina), vše v `public/images/benar/
+     gallery-1…9-{800,1600}.{webp,jpg}`.
+   - Jedna z fotek je navíc zpracována zvlášť jako **hero pozadí**
+     (`public/images/benar/hero-{960,1920}.{webp,jpg}`) a použita v
+     `Hero.astro`.
+   - `src/components/Gallery.astro` i `Hero.astro` vykreslují
+     `<picture><source type="image/webp">…<img loading="lazy">` — moderní
+     prohlížeče dostanou WebP, starší automaticky JPEG fallback.
+   - Datový model `GalleryImage` (`src/data/site.config.ts`) pro to má
+     pole `webp?` + `jpg?` (dvojice pro `<picture>`) vedle staršího
+     `src?` (fallback pro jediný zdroj) a povinné `alt`.
+   - `gallery.note` v `site.config.ts` byl upraven na pravdivý text o
+     reálných fotografiích (už needeklaruje „ukázkové"/„AI" fotky).
+   - Staré SVG placeholdery (`gallery-01-interior.svg` …
+     `gallery-10-exterier.svg`) byly nahrazeny a přesunuty do archivu
+     (nejsou už součástí aktivní galerie).
 
-   Řešení je na Vlastimilovi — jedna ze dvou možností:
-   - nastavit u Google Drive složky sdílení **„Komukoli s odkazem"**
-     (role stačí „Prohlížitel" / Viewer), čímž se obsah stane strojově
-     stažitelným, nebo
-   - poslat fotky jinudy — e-mailem, přímým nahráním do **JARVIS
-     SOUBORY**, přes WeTransfer apod.
+   **Výběr, pořadí a pojmenování fotek (`gallery-1` … `gallery-9`) je
+   čistě automatické** — podle pořadí staženého z Drive složky, **bez
+   jakékoli ruční vizuální kurace obsahu** (tzn. nikdo fotky neprocházel
+   a netřídil podle toho, co přesně zobrazují — interiér, jídlo, exteriér
+   apod.). Alt texty jsou proto zatím obecné („Restaurace Benar —
+   fotografie prostoru"). **Doporučení pro Vlastimila:** pokud bude chtít
+   přesnější popisky nebo logičtější pořadí (např. nejprve interiér, pak
+   jídlo, pak zahrádka), stačí volitelně později fotky podle skutečného
+   obsahu přejmenovat/přeuspořádat a upravit odpovídající `alt` texty v
+   `gallery.images` — žádný zásah do komponent ani datového typu není
+   potřeba.
 
-   **Kód je na příchod reálných fotek už připravený, ověřeno přímo v
-   souborech, žádný další zásah do kódu nebude potřeba:**
-   - Datový model `GalleryImage` (`src/data/site.config.ts`) má pole
-     `src?` (fallback/legacy jediný zdroj), volitelnou dvojici `webp?` +
-     `jpg?` (pro `<picture>` s WebP zdrojem a JPEG fallbackem) a povinné
-     `alt`.
-   - Komponenta `src/components/Gallery.astro` už obě varianty umí
-     vykreslit: pokud položka má `webp` i `jpg`, vyrenderuje
-     `<picture><source type="image/webp">…<img></picture>`; jinak
-     použije prosté `<img src>` z pole `src`. Obrázky jsou responzivní
-     (`width: 100%; aspect-ratio: 4/3; object-fit: cover`) a `loading="lazy"`.
-   - Až fotky dorazí, stačí: (1) vygenerovat/uložit WebP+JPEG varianty
-     (ideálně 800px/1600px) do `public/images/`, (2) v `site.config.ts`
-     v poli `gallery.images` doplnit záznamy s poli `webp`/`jpg`/`alt` (a
-     volitelně upravit `gallery.note` na „reálné fotografie restaurace").
-     Žádná změna komponenty ani datového typu nebude potřeba.
 4. **Recenze hostů** jsou 3 fiktivní demo-citace v duchu reálného tónu
    veřejných hodnocení podniku (ne kopie skutečných recenzí), označené jako
    „ukázkové reference". Číselná hodnocení (92 % doporučení na Facebooku,
@@ -265,7 +251,11 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 │   └── utils/
 │       ├── hours.ts             # výpočet aktuálního stavu otevírací doby
 │       └── reservationValidation.ts
-├── public/images/               # stock/placeholder fotografie (DEMO, SVG)
+├── public/images/
+│   ├── benar/                    # reálné fotografie restaurace Benar
+│   │                             # (hero + galerie, WebP+JPEG, 800/1600 px)
+│   └── dish-*.svg                # ilustrační SVG ikony jednotlivých jídel
+│                                 # v denním menu (nejde o fotografie)
 └── dist/                        # produkční build (generováno, negenerovat ručně)
 ```
 
@@ -280,10 +270,12 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 
 ## Přechod z dema na ostrý web
 
-- [ ] Nahradit všechny DEMO/placeholder fotografie v `public/images/`
-      reálnými fotografiemi dodanými klientem (restaurací Benar) — viz
-      sekce „Předpoklady" bod 3 pro přesný postup a co je potřeba od
-      Vlastimila
+- [x] ~~Nahradit DEMO/placeholder fotografie reálnými~~ — hotovo: galerie
+      i hero teď používají 9 reálných fotek restaurace Benar
+      (`public/images/benar/`, WebP+JPEG, 800/1600 px) — viz sekce
+      „Předpoklady" bod 3. Volitelně zbývá jen přejmenovat/setřídit fotky
+      podle skutečného obsahu a doladit `alt` texty, pokud bude
+      Vlastimil chtít přesnější popisky než obecné „fotografie prostoru".
 - [ ] Nahradit fiktivní demo-recenze (3 citace) reálnými recenzemi hostů,
       nebo sekci zcela odstranit, pokud klient nedodá souhlas s jejich
       zveřejněním
