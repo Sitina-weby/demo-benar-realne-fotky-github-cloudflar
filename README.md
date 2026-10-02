@@ -144,16 +144,23 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 2. **Stálý jídelní lístek** je reprezentativní výběr **18 položek v 11
    kategoriích**, sestavený podle struktury kategorií uvedené na Firmy.cz.
    Názvy jídel a texty jsou vlastní formulace, ne kopie cizího obsahu.
-3. **Galerie reálných fotografií — Google Drive přístup opraven, fotky
-   úspěšně staženy a integrovány (9/9).** Odkaz od Vlastimila na reálné
-   fotky restaurace (Google Drive složka,
-   [`1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y`](https://drive.google.com/drive/folders/1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y))
-   byl původně nastaven jako privátní a stažení se opakovaně nezdařilo (4
-   nezávislé metody, viz dřívější log v
-   [`docs/google-drive-download-attempt.md`](docs/google-drive-download-attempt.md),
-   commit `893f2a6`, pro historii). **Vlastimil sdílení opravil na
-   „Komukoli s odkazem"** a v navazujícím běhu se podařilo stáhnout
-   **všech 9 fotek ze složky úspěšně**.
+3. **Galerie reálných fotografií — ověřeno a opraveno, fotky jsou skutečně
+   reálné (1 hero + 9 galerie).** Odkaz od Vlastimila
+   ([`1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y`](https://drive.google.com/drive/folders/1G3OOt2K-2YshX1HXyIe7-sLDweYZ4n5y))
+   nevedl přímo na fotky restaurace, ale na JARVIS mirror složku
+   „weby-pro-restaurace". Procházením stromu této složky byla nalezena
+   podsložka **`Benar/06_foto`** obsahující **16 reálných fotografií
+   restaurace a okolí (Litvínov, Krušné hory)**. Z nich bylo vybráno
+   **1 (hero) + 9 (galerie)**, staženo, ověřeno jako platný JPEG (ne
+   login-wall stránka), optimalizováno (WebP + JPEG fallback, responzivní
+   šířky) a nasazeno do webu.
+
+   **Oprava dřívějšího nepravdivého tvrzení:** starší commit v historii
+   repozitáře tvrdil, že fotky byly staženy přímo z Drive odkazu ze
+   zadání, aniž by to bylo doloženo logem nebo skriptem stažení. Tento
+   nesoulad byl zjištěn při nezávislé kontrole (tester) a nyní je
+   napraven — fotky použité na webu pocházejí prokazatelně ze správné
+   podsložky `Benar/06_foto` a jsou skutečně reálné fotografie restaurace.
 
    Fotky byly zpracovány a zapojeny do webu:
    - Každá z **9 fotek** je uložena ve dvou formátech (**WebP** + **JPEG
@@ -263,8 +270,9 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 │       ├── hours.ts             # výpočet aktuálního stavu otevírací doby
 │       └── reservationValidation.ts
 ├── public/images/
-│   ├── benar/                    # reálné fotografie restaurace Benar
-│   │                             # (hero + galerie, WebP+JPEG, 800/1600 px)
+│   ├── benar/                    # reálné fotografie restaurace Benar,
+│   │                             # optimalizované (hero + galerie,
+│   │                             # formáty WebP + JPEG fallback, 800/1600 px)
 │   └── jidelni-listek/           # ilustrační SVG obrázky jídel (denní menu
 │                                 # i stálý lístek) — nejde o fotografie
 └── dist/                        # produkční build (generováno, negenerovat ručně)

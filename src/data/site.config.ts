@@ -7,7 +7,7 @@
 // Veškerý obsah je psán ručně, sousedským/přátelským tónem, bez lorem ipsum.
 // Reálná fakta (adresa, telefon, FB, rok založení, hodnocení) vycházejí
 // z veřejně dostupných zdrojů (viz technická specifikace v2, oddíl 3).
-// Denní menu, stálý lístek, recenze a fotky jsou VZOROVÉ/DEMO obsahy.
+// Denní menu, stálý lístek a recenze jsou VZOROVÉ/DEMO obsahy. Fotografie restaurace jsou reálné (viz public/images/benar/).
 // ---------------------------------------------------------------------------
 
 export interface DishImage {
@@ -268,9 +268,10 @@ export const siteConfig = {
 
   gallery: {
     note:
-      "Reálné fotografie restaurace Benar. Výběr a pořadí fotek je automatický " +
-      "(bez ruční vizuální kurace) — pokud budete chtít přesnější popisky nebo jiné pořadí, " +
-      "stačí fotky podle skutečného obsahu přejmenovat a upravit alt texty níže.",
+      "Reálné fotografie restaurace Benar a okolí (Litvínov, Krušné hory). " +
+      "Výběr a pořadí fotek je automatický (bez ruční vizuální kurace) — pokud budete chtít " +
+      "přesnější popisky nebo jiné pořadí, stačí fotky podle skutečného obsahu přejmenovat " +
+      "a upravit alt texty níže.",
     images: [
       { webp: "/images/benar/gallery-1-800.webp", jpg: "/images/benar/gallery-1-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
       { webp: "/images/benar/gallery-2-800.webp", jpg: "/images/benar/gallery-2-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
@@ -369,7 +370,7 @@ export const siteConfig = {
 
   demoNotice: {
     text:
-      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Fotografie restaurace jsou reálné, denní menu a recenze jsou vzorové. Finální web pro Restauraci Benar by obsahoval aktuální obsah dodaný restaurací.",
+      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Denní menu a recenze jsou vzorové (demo) obsahy. Finální web pro Restauraci Benar by obsahoval aktuální obsah dodaný restaurací.",
   },
 };
 
