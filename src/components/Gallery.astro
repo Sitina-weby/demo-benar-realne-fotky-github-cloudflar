@@ -63,14 +63,33 @@ const { gallery } = siteConfig;
     transform: scale(1.04);
   }
 
+  /*
+   * 9 reálných fotek se beze zbytku dělí 3 sloupci (3× 3 fotky na řádek),
+   * proto má galerie na tabletu i desktopu 3 sloupce místo dřívějších 4 —
+   * se 4 sloupci by poslední řádek obsahoval jen 1 osamocenou fotku ze 4.
+   * Pravidlo níže navíc ošetří i budoucí lichý počet fotek obecně: pokud by
+   * v posledním řádku zbyla jediná položka, roztáhne se přes celou šířku
+   * gridu, takže nikdy nezůstane "viset" osamocená karta v rohu.
+   */
+  .gallery__item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: min(100%, 420px);
+    justify-self: center;
+  }
+
   @media (min-width: 640px) {
     .gallery__grid {
       grid-template-columns: repeat(3, 1fr);
     }
+    .gallery__item:last-child:nth-child(3n + 1) {
+      grid-column: 1 / -1;
+      max-width: min(100%, 420px);
+      justify-self: center;
+    }
   }
   @media (min-width: 992px) {
     .gallery__grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
