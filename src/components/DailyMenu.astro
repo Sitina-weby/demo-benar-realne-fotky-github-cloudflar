@@ -12,8 +12,17 @@ const { dailyMenu } = siteConfig;
       Podáváme {dailyMenu.servedTime} &middot; {dailyMenu.date}
     </p>
     <p class="daily-menu__note">{dailyMenu.note}</p>
+    <p class="daily-menu__photo-note">Fotografie jídel jsou ilustrační, neodpovídají přesné podobě podávaného pokrmu.</p>
 
     <div class="daily-menu__soup card">
+      {dailyMenu.soup.image && (
+        <img
+          src={dailyMenu.soup.image.src}
+          alt={dailyMenu.soup.image.alt}
+          loading="lazy"
+          class="daily-menu__thumb"
+        />
+      )}
       <span class="daily-menu__label">Polévka</span>
       <span class="daily-menu__name">{dailyMenu.soup.name}</span>
       <span class="daily-menu__allergens">Alergeny: {dailyMenu.soup.allergens.join(", ")}</span>
@@ -25,6 +34,14 @@ const { dailyMenu } = siteConfig;
         dailyMenu.mainDishes.map((dish) => (
           <li class="daily-menu__item card">
             <span class="daily-menu__number">{dish.number}</span>
+            {dish.image && (
+              <img
+                src={dish.image.src}
+                alt={dish.image.alt}
+                loading="lazy"
+                class="daily-menu__thumb"
+              />
+            )}
             <div class="daily-menu__item-body">
               <span class="daily-menu__name">{dish.name}</span>
               <span class="daily-menu__weight">{dish.weight} &middot; alergeny: {dish.allergens.join(", ")}</span>
@@ -49,12 +66,26 @@ const { dailyMenu } = siteConfig;
     font-size: var(--fs-sm);
     font-style: italic;
     color: var(--color-ink-soft);
+    margin-bottom: var(--space-1);
+  }
+  .daily-menu__photo-note {
+    font-size: var(--fs-xs);
+    font-style: italic;
+    color: var(--color-ink-soft);
     margin-bottom: var(--space-6);
+  }
+
+  .daily-menu__thumb {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    flex-shrink: 0;
   }
 
   .daily-menu__soup {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto auto 1fr auto auto;
     align-items: center;
     gap: var(--space-3);
     margin-bottom: var(--space-6);
@@ -82,7 +113,7 @@ const { dailyMenu } = siteConfig;
   }
   .daily-menu__item {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto 1fr auto;
     align-items: center;
     gap: var(--space-4);
   }
@@ -124,8 +155,11 @@ const { dailyMenu } = siteConfig;
 
   @media (max-width: 480px) {
     .daily-menu__soup {
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto auto 1fr;
       row-gap: var(--space-1);
+    }
+    .daily-menu__item {
+      grid-template-columns: auto auto 1fr;
     }
   }
 </style>

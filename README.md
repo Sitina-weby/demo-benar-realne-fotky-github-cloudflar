@@ -16,6 +16,10 @@ produktové řady. Case-by-case úpravy obsahu pro Benar patří sem; jakékoli
 změny obecného datového modelu (nová pole, přejmenování bloků apod.) patří do
 master šablony, ne do tohoto souboru.
 
+Položky menu (`MainDish` pro denní menu, `MenuItem` pro stálý lístek) mají
+nově volitelné pole `image?: { src, alt }` s ilustračním obrázkem jídla —
+pokud položka pole nemá, zobrazí se beze změny jako dřív (bez obrázku).
+
 ---
 
 ## Jak spustit (vývoj)
@@ -183,6 +187,13 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
    `gallery.images` — žádný zásah do komponent ani datového typu není
    potřeba.
 
+   **Obrázky jídel v denním menu a stálém lístku jsou ilustrační SVG
+   placeholdery** (`public/images/jidelni-listek/`), ne reálné fotky
+   konkrétních pokrmů Benaru — stejně jako u fotek restaurace výše, šlo o
+   dostupnou náhradu kvůli nedostupnosti AI image-gen nástroje v sandboxu;
+   až bude k dispozici reálné fotodokumentace jídel, stačí je nahradit a
+   doplnit `image.src`/`alt` u příslušných položek v `site.config.ts`.
+
 4. **Recenze hostů** jsou 3 fiktivní demo-citace v duchu reálného tónu
    veřejných hodnocení podniku (ne kopie skutečných recenzí), označené jako
    „ukázkové reference". Číselná hodnocení (92 % doporučení na Facebooku,
@@ -254,8 +265,8 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 ├── public/images/
 │   ├── benar/                    # reálné fotografie restaurace Benar
 │   │                             # (hero + galerie, WebP+JPEG, 800/1600 px)
-│   └── dish-*.svg                # ilustrační SVG ikony jednotlivých jídel
-│                                 # v denním menu (nejde o fotografie)
+│   └── jidelni-listek/           # ilustrační SVG obrázky jídel (denní menu
+│                                 # i stálý lístek) — nejde o fotografie
 └── dist/                        # produkční build (generováno, negenerovat ručně)
 ```
 

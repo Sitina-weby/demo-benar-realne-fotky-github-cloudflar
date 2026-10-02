@@ -10,18 +10,28 @@
 // Denní menu, stálý lístek, recenze a fotky jsou VZOROVÉ/DEMO obsahy.
 // ---------------------------------------------------------------------------
 
+export interface DishImage {
+  /** Cesta k ilustračnímu obrázku položky (SVG/WebP), relativně k /public. */
+  src: string;
+  alt: string;
+}
+
 export interface MainDish {
   number: number;
   weight: string;
   name: string;
   allergens: number[];
   price: number;
+  /** Volitelný ilustrační obrázek jídla — NEJDE o reálnou fotografii pokrmu z Benaru. */
+  image?: DishImage;
 }
 
 export interface MenuItem {
   name: string;
   weight: string;
   price: number;
+  /** Volitelný ilustrační obrázek jídla — NEJDE o reálnou fotografii pokrmu z Benaru. */
+  image?: DishImage;
 }
 
 export interface MenuCategory {
@@ -115,16 +125,17 @@ export const siteConfig = {
       name: "Květáková polévka",
       allergens: [1, 3, 7],
       price: 42,
+      image: { src: "/images/jidelni-listek/polevka.svg", alt: "Ilustrační foto — květáková polévka" },
     },
     mainDishes: [
-      { number: 1, weight: "150 g", name: "Hovězí guláš, houskový knedlík", allergens: [1, 3, 7], price: 169 },
-      { number: 2, weight: "120 g", name: "Vepřový řízek, bramborový salát", allergens: [1, 3, 7], price: 179 },
-      { number: 3, weight: "300 g", name: "Kuřecí prsa na žampionech, dušená rýže", allergens: [1, 7], price: 165 },
-      { number: 4, weight: "150 g", name: "Svíčková na smetaně, houskový knedlík", allergens: [1, 3, 7, 9], price: 185 },
-      { number: 5, weight: "250 g", name: "Zapečené těstoviny se šunkou a sýrem", allergens: [1, 3, 7], price: 162 },
-      { number: 6, weight: "200 g", name: "Grilovaný losos, bramborové pyré, špenát", allergens: [1, 4, 7], price: 189 },
-      { number: 7, weight: "350 g", name: "Segedínský guláš, houskový knedlík", allergens: [1, 3, 7], price: 172 },
-      { number: 8, weight: "200 g", name: "Smažený sýr hermelín, vařený brambor, tatarská omáčka", allergens: [1, 3, 7, 10], price: 160 },
+      { number: 1, weight: "150 g", name: "Hovězí guláš, houskový knedlík", allergens: [1, 3, 7], price: 169, image: { src: "/images/jidelni-listek/hovezi.svg", alt: "Ilustrační foto — hovězí guláš" } },
+      { number: 2, weight: "120 g", name: "Vepřový řízek, bramborový salát", allergens: [1, 3, 7], price: 179, image: { src: "/images/jidelni-listek/vepre.svg", alt: "Ilustrační foto — vepřový řízek" } },
+      { number: 3, weight: "300 g", name: "Kuřecí prsa na žampionech, dušená rýže", allergens: [1, 7], price: 165, image: { src: "/images/jidelni-listek/kureci.svg", alt: "Ilustrační foto — kuřecí prsa na žampionech" } },
+      { number: 4, weight: "150 g", name: "Svíčková na smetaně, houskový knedlík", allergens: [1, 3, 7, 9], price: 185, image: { src: "/images/jidelni-listek/hovezi.svg", alt: "Ilustrační foto — svíčková na smetaně" } },
+      { number: 5, weight: "250 g", name: "Zapečené těstoviny se šunkou a sýrem", allergens: [1, 3, 7], price: 162, image: { src: "/images/jidelni-listek/testoviny.svg", alt: "Ilustrační foto — zapečené těstoviny se šunkou a sýrem" } },
+      { number: 6, weight: "200 g", name: "Grilovaný losos, bramborové pyré, špenát", allergens: [1, 4, 7], price: 189, image: { src: "/images/jidelni-listek/rybi-jidlo.svg", alt: "Ilustrační foto — grilovaný losos" } },
+      { number: 7, weight: "350 g", name: "Segedínský guláš, houskový knedlík", allergens: [1, 3, 7], price: 172, image: { src: "/images/jidelni-listek/hovezi.svg", alt: "Ilustrační foto — segedínský guláš" } },
+      { number: 8, weight: "200 g", name: "Smažený sýr hermelín, vařený brambor, tatarská omáčka", allergens: [1, 3, 7, 10], price: 160, image: { src: "/images/jidelni-listek/syr.svg", alt: "Ilustrační foto — smažený sýr hermelín" } },
     ] as MainDish[],
     orderNote: "Objednávky na dnešní menu přijímáme na tel.: 476 000 229",
   },
@@ -182,74 +193,74 @@ export const siteConfig = {
       {
         name: "Studené předkrmy",
         items: [
-          { name: "Domácí paštika s brusinkami a toastem", weight: "100 g", price: 99 },
-          { name: "Šunková rolka s křenovou pěnou", weight: "120 g", price: 89 },
+          { name: "Domácí paštika s brusinkami a toastem", weight: "100 g", price: 99, image: { src: "/images/jidelni-listek/predkrm-studeny.svg", alt: "Ilustrační foto — domácí paštika s brusinkami a toastem" } },
+          { name: "Šunková rolka s křenovou pěnou", weight: "120 g", price: 89, image: { src: "/images/jidelni-listek/predkrm-studeny.svg", alt: "Ilustrační foto — šunková rolka s křenovou pěnou" } },
         ],
       },
       {
         name: "Polévky",
         items: [
-          { name: "Hovězí vývar se játrovými knedlíčky", weight: "0,33 l", price: 45 },
-          { name: "Česneková s krutony a sýrem", weight: "0,33 l", price: 42 },
+          { name: "Hovězí vývar se játrovými knedlíčky", weight: "0,33 l", price: 45, image: { src: "/images/jidelni-listek/polevka.svg", alt: "Ilustrační foto — hovězí vývar se játrovými knedlíčky" } },
+          { name: "Česneková s krutony a sýrem", weight: "0,33 l", price: 42, image: { src: "/images/jidelni-listek/polevka.svg", alt: "Ilustrační foto — česneková polévka s krutony a sýrem" } },
         ],
       },
       {
         name: "Teplé předkrmy",
         items: [
-          { name: "Utopenec zapečený se sýrem", weight: "150 g", price: 79 },
+          { name: "Utopenec zapečený se sýrem", weight: "150 g", price: 79, image: { src: "/images/jidelni-listek/predkrm-teply.svg", alt: "Ilustrační foto — utopenec zapečený se sýrem" } },
         ],
       },
       {
         name: "Pokrmy z kuřecího masa",
         items: [
-          { name: "Kuřecí prsa plněná žampiony a sýrem", weight: "200 g", price: 219 },
-          { name: "Kuřecí křídla na medu a bylinkách", weight: "300 g", price: 199 },
+          { name: "Kuřecí prsa plněná žampiony a sýrem", weight: "200 g", price: 219, image: { src: "/images/jidelni-listek/kureci.svg", alt: "Ilustrační foto — kuřecí prsa plněná žampiony a sýrem" } },
+          { name: "Kuřecí křídla na medu a bylinkách", weight: "300 g", price: 199, image: { src: "/images/jidelni-listek/kureci.svg", alt: "Ilustrační foto — kuřecí křídla na medu a bylinkách" } },
         ],
       },
       {
         name: "Ryby",
         items: [
-          { name: "Grilovaný losos na bylinkovém másle", weight: "220 g", price: 329 },
-          { name: "Smažený kapr, bramborový salát", weight: "200 g", price: 239 },
+          { name: "Grilovaný losos na bylinkovém másle", weight: "220 g", price: 329, image: { src: "/images/jidelni-listek/rybi-jidlo.svg", alt: "Ilustrační foto — grilovaný losos na bylinkovém másle" } },
+          { name: "Smažený kapr, bramborový salát", weight: "200 g", price: 239, image: { src: "/images/jidelni-listek/rybi-jidlo.svg", alt: "Ilustrační foto — smažený kapr s bramborovým salátem" } },
         ],
       },
       {
         name: "Těstoviny a gnocchi",
         items: [
-          { name: "Gnocchi se špenátem a gorgonzolou", weight: "300 g", price: 219 },
-          { name: "Tagliatelle s kuřecím masem a sušenými rajčaty", weight: "320 g", price: 209 },
+          { name: "Gnocchi se špenátem a gorgonzolou", weight: "300 g", price: 219, image: { src: "/images/jidelni-listek/testoviny.svg", alt: "Ilustrační foto — gnocchi se špenátem a gorgonzolou" } },
+          { name: "Tagliatelle s kuřecím masem a sušenými rajčaty", weight: "320 g", price: 209, image: { src: "/images/jidelni-listek/testoviny.svg", alt: "Ilustrační foto — tagliatelle s kuřecím masem a sušenými rajčaty" } },
         ],
       },
       {
         name: "Sýry",
         items: [
-          { name: "Smažený hermelín s brusinkami", weight: "150 g", price: 189 },
+          { name: "Smažený hermelín s brusinkami", weight: "150 g", price: 189, image: { src: "/images/jidelni-listek/syr.svg", alt: "Ilustrační foto — smažený hermelín s brusinkami" } },
         ],
       },
       {
         name: "Dětská jídla",
         items: [
-          { name: "Dětský řízek s bramborovou kaší", weight: "80 g", price: 129 },
-          { name: "Špagety s rajčatovou omáčkou a sýrem", weight: "150 g", price: 99 },
+          { name: "Dětský řízek s bramborovou kaší", weight: "80 g", price: 129, image: { src: "/images/jidelni-listek/detske-jidlo.svg", alt: "Ilustrační foto — dětský řízek s bramborovou kaší" } },
+          { name: "Špagety s rajčatovou omáčkou a sýrem", weight: "150 g", price: 99, image: { src: "/images/jidelni-listek/detske-jidlo.svg", alt: "Ilustrační foto — špagety s rajčatovou omáčkou a sýrem" } },
         ],
       },
       {
         name: "Hovězí steaky a speciality",
         items: [
-          { name: "Hovězí roštěná steak, pepřová omáčka", weight: "200 g", price: 359 },
-          { name: "Rib-eye steak s grilovanou zeleninou", weight: "250 g", price: 449 },
+          { name: "Hovězí roštěná steak, pepřová omáčka", weight: "200 g", price: 359, image: { src: "/images/jidelni-listek/steak.svg", alt: "Ilustrační foto — hovězí roštěná steak s pepřovou omáčkou" } },
+          { name: "Rib-eye steak s grilovanou zeleninou", weight: "250 g", price: 449, image: { src: "/images/jidelni-listek/steak.svg", alt: "Ilustrační foto — rib-eye steak s grilovanou zeleninou" } },
         ],
       },
       {
         name: "Minutky z vepřové panenky",
         items: [
-          { name: "Minutka z vepřové panenky na slanině", weight: "180 g", price: 249 },
+          { name: "Minutka z vepřové panenky na slanině", weight: "180 g", price: 249, image: { src: "/images/jidelni-listek/vepre.svg", alt: "Ilustrační foto — minutka z vepřové panenky na slanině" } },
         ],
       },
       {
         name: "Saláty",
         items: [
-          { name: "Caesar salát s kuřecím masem", weight: "300 g", price: 199 },
+          { name: "Caesar salát s kuřecím masem", weight: "300 g", price: 199, image: { src: "/images/jidelni-listek/salat.svg", alt: "Ilustrační foto — Caesar salát s kuřecím masem" } },
         ],
       },
     ] as MenuCategory[],

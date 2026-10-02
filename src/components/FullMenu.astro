@@ -10,6 +10,7 @@ const { fullMenu } = siteConfig;
 
 <div class="full-menu">
   <p class="full-menu__note">{fullMenu.note}</p>
+  <p class="full-menu__photo-note">Fotografie jídel jsou ilustrační, neodpovídají přesné podobě podávaného pokrmu.</p>
   <div class="full-menu__categories">
     {
       fullMenu.categories.map((category) => (
@@ -18,6 +19,14 @@ const { fullMenu } = siteConfig;
           <ul>
             {category.items.map((item) => (
               <li>
+                {item.image && (
+                  <img
+                    src={item.image.src}
+                    alt={item.image.alt}
+                    loading="lazy"
+                    class="full-menu__thumb"
+                  />
+                )}
                 <span class="full-menu__item-name">
                   {item.name} <span class="full-menu__item-weight">({item.weight})</span>
                 </span>
@@ -34,6 +43,12 @@ const { fullMenu } = siteConfig;
 <style>
   .full-menu__note {
     font-size: var(--fs-sm);
+    font-style: italic;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-1);
+  }
+  .full-menu__photo-note {
+    font-size: var(--fs-xs);
     font-style: italic;
     color: var(--color-ink-soft);
     margin-bottom: var(--space-8);
@@ -57,6 +72,7 @@ const { fullMenu } = siteConfig;
   }
   .full-menu__category li {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: var(--space-4);
     font-size: var(--fs-sm);
@@ -66,6 +82,16 @@ const { fullMenu } = siteConfig;
   .full-menu__category li:last-child {
     border-bottom: none;
     padding-bottom: 0;
+  }
+  .full-menu__thumb {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .full-menu__item-name {
+    flex: 1;
   }
   .full-menu__item-weight {
     color: var(--color-ink-soft);
