@@ -4,14 +4,38 @@ import HoursBadge from "./HoursBadge.astro";
 
 const { hero, business, about } = siteConfig;
 const [mainImage] = hero.images;
+
+// Odvození menší (960w) varianty z existující 1920w cesty, aby mobil
+// nestahoval zbytečně velký hero obrázek. Soubory hero-960.jpg/webp
+// reálně existují vedle hero-1920.jpg/webp v public/images/benar/.
+const heroWebpSmall = mainImage.webp?.replace("-1920.webp", "-960.webp");
+const heroJpgSmall = mainImage.jpg?.replace("-1920.jpg", "-960.jpg");
+const heroSizes = "(max-width: 768px) 960px, 1920px";
 ---
 
 <section class="hero" id="hero">
   <div class="hero__bg">
     {mainImage.webp && mainImage.jpg ? (
       <picture>
-        <source srcset={mainImage.webp} type="image/webp" />
-        <img src={mainImage.jpg} alt={mainImage.alt} class="hero__bg-img" loading="eager" />
+        <source
+          type="image/webp"
+          srcset={`${heroWebpSmall} 960w, ${mainImage.webp} 1920w`}
+          sizes={heroSizes}
+        />
+        <source
+          type="image/jpeg"
+          srcset={`${heroJpgSmall} 960w, ${mainImage.jpg} 1920w`}
+          sizes={heroSizes}
+        />
+        <img
+          src={mainImage.jpg}
+          srcset={`${heroJpgSmall} 960w, ${mainImage.jpg} 1920w`}
+          sizes={heroSizes}
+          alt={mainImage.alt}
+          class="hero__bg-img"
+          loading="eager"
+          fetchpriority="high"
+        />
       </picture>
     ) : (
       <img src={mainImage.src} alt={mainImage.alt} class="hero__bg-img" loading="eager" />

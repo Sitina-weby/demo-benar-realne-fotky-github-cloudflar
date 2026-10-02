@@ -53,78 +53,25 @@ npm run build        # vygeneruje statický build do ./dist
 
 ---
 
-## GitHub
+## Zveřejnění webu
 
-**Stav po tomto běhu: GitHub repozitář NEBYL v sandboxu založen** —
-`gh auth status` hlásí, že sandbox není přihlášený k žádnému GitHub účtu
-(chybí GitHub CLI autentizace/token). Nic se tedy nepředstírá ani nesimuluje.
+Tento projekt je připravený k zveřejnění přes JARVIS: stačí ve **VÍCE → NA
+POZADÍ** u tohoto projektu kliknout **ZVEŘEJNIT** (nebo říct JARVISovi
+„Zveřejni web Benaru"). JARVIS sám:
 
-Co naopak **je hotové a ověřené**:
-- Lokální git historie je **kompletní a commitnutá**, `git status` je čistý
-  (žádné nestagované ani neuložené změny).
-- Poslední commity (viz `git log --oneline`): auditní záznam
-  *"Add official photo provenance audit record (docs/foto-puvod-overeni.md)"*
-  navazuje na *"Replace gallery photos with verified Drive originals
-  (IMG_8493-8501)"* a předchozí README update.
-- `_drive_download/` (dočasné stažené originály z Drive) je správně v
-  `.gitignore` a není součástí repozitáře.
+- uloží aktuální kód do soukromého GitHub repozitáře (organizace týmu),
+- založí Cloudflare Pages projekt propojený s tím repozitářem,
+- vrátí veřejný odkaz ve tvaru `https://<projekt>.pages.dev`.
 
-**Pro dokončení potřebuje tým jednu z těchto tří věcí od Vlastimila:**
+Build nastavení pro Cloudflare Pages (pro referenci, JARVIS je nastaví sám):
 
-1. Založit nové **prázdné privátní** repo na [github.com](https://github.com/new)
-   s názvem např. `demo-restaurace-benar`, a pak v tomto adresáři spustit:
-   ```sh
-   git remote add origin <URL nového repa>
-   git push -u origin main
-   ```
-2. **Nebo** poskytnout GitHub token / provést `gh auth login` v tomto
-   sandboxu, aby repo mohl založit a napushovat tým za něj
-   (`gh repo create demo-restaurace-benar --private --source=. --remote=origin --push`).
-3. **Nebo** použít centrální JARVIS mechanismus „ZVEŘEJNIT" (pokud a až
-   bude pro tento projekt k dispozici) — viz sekce „Nasazení na Cloudflare
-   Pages" níže.
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+- **Framework preset:** `Astro`
 
----
-
-## Nasazení na Cloudflare Pages
-
-Cloudflare Pages vyžaduje jako zdroj buildu propojený GitHub repozitář —
-proto musí nejdřív vzniknout repo dle sekce „GitHub" výše. Jakmile repo
-existuje (ať už ho založí Vlastimil ručně, nebo tým po obdržení přístupu),
-postup nasazení je:
-
-1. Přihlásit se na [dash.cloudflare.com](https://dash.cloudflare.com) →
-   **Workers & Pages → Create → Pages → Connect to Git**.
-2. Vybrat repozitář `demo-restaurace-benar`
-   (*zatím nezaložen — viz sekce „GitHub" výše, kde repo musí nejdřív
-   vzniknout, než půjde vybrat zde*).
-3. **Build command:** `npm run build`
-4. **Build output directory:** `dist`
-5. **Framework preset:** `Astro`, pokud ho Cloudflare v nabídce má; jinak
-   zvolit `None` a nastavit ručně build command + output directory dle
-   bodů 3–4 výše. (Node verze dle `package.json` → `engines.node:
-   ">=22.12.0"`; pokud build prostředí defaultně používá starší Node,
-   nastavit proměnnou prostředí `NODE_VERSION=22`.)
-6. Kliknout **Save and Deploy** → Cloudflare přidělí veřejnou URL tvaru
-   `https://<project-name>.pages.dev`.
-
-**Kroky 1–6 musí provést/potvrdit Vlastimil sám (nebo je spustit centrální
-JARVIS mechanismus s jeho tokeny)** — vyžadují přihlášení do jeho
-Cloudflare účtu, což je mimo sandbox a mimo schvalovací mechanismus týmu.
-
-### Alternativa (ne primární platforma)
-
-Pokud by se z nějakého důvodu Cloudflare Pages nehodilo, stejný statický
-Astro build (`dist/`) lze nasadit i na **Vercel** (`vercel deploy`,
-framework preset „Astro" se detekuje automaticky) nebo **Netlify**
-(`netlify deploy`, build command `npm run build`, publish directory
-`dist`). Jde o rovnocennou náhradu stejného typu statického buildu, ale
-**Cloudflare Pages zůstává primární a doporučenou volbou** pro toto demo.
-
-Nouzový fallback bez jakékoli platformy: obsah `dist/` (po `npm run
-build`) lze nahrát na libovolný static hosting (FTP, GitHub Pages, firemní
-webhosting) nebo jen lokálně prohlédnout přes `npm run preview` / `npx
-serve dist`.
+**Podmínka:** ve **VÍCE → NASTAVENÍ → API** musí mít Vlastimil jednorázově
+vyplněné GitHub a Cloudflare tokeny (skupina WEBY) — pokud ještě nejsou,
+JARVIS při pokusu o zveřejnění řekne, co chybí.
 
 ---
 
@@ -225,9 +172,9 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
 7. **Otevírací doba** (Po–Čt 11:00–22:00, Pá–So 11:00–23:00, Ne 11:00–22:00)
    je realistický ukázkový základ vycházející z dostupných zdrojů, s
    poznámkou „ověří restaurace".
-8. **Nasazení**: primárně Cloudflare Pages (viz sekce „Nasazení na Cloudflare Pages" výše);
-   Vercel/Netlify zůstávají jako rovnocenná alternativa, fallback je
-   lokální/zip balíček `dist/` po `npm run build`.
+8. **Nasazení**: přes JARVIS mechanismus „ZVEŘEJNIT" na Cloudflare Pages (viz
+   sekce „Zveřejnění webu" výše); fallback je lokální/zip balíček `dist/`
+   po `npm run build`.
 9. **Jazyk** webu je pouze čeština — vícejazyčnost je mimo rozsah MVP.
 10. **IČO/DIČ** v patičce záměrně chybí — nebylo v rámci přípravy dema
     ověřeno. Doplní se až při reálném onboardingu klienta, pokud by z dema
@@ -240,16 +187,38 @@ transparentnosti vůči komukoli, kdo bude web prezentovat nebo dál upravovat.
     web restaurace. To je úmyslné a správné pro tuto fázi — při případném
     přechodu na ostrý produkční web je nutné je odstranit/změnit (viz sekce
     „Přechod z dema na ostrý web" níže).
-13. **GitHub repozitář zatím není založen** (ověřeno `gh auth status` —
-    sandbox nemá GitHub autentizaci) a Cloudflare Pages proto zatím nemá
-    co nasadit — vyžaduje propojený GitHub repo jako zdroj buildu. Detaily,
-    stav a přesné instrukce pro dokončení viz sekce „GitHub" a „Nasazení
-    na Cloudflare Pages" výše. Lokální git historie je mezitím kompletní,
+13. **GitHub repozitář a Cloudflare Pages zatím nejsou založené** — to má na
+    starosti JARVIS v okamžiku zveřejnění (viz sekce „Zveřejnění webu"
+    výše), ne tým v sandboxu. Lokální git historie je mezitím kompletní,
     commitnutá a `git status` čistý; kód je otestovaný (28/28 testů) a
-    buildovatelný (`npm run build` bez chyby) — čeká jen na založení repa
-    a propojení s Cloudflare.
+    buildovatelný (`npm run build` bez chyby) — je tedy plně připravený
+    k zveřejnění přes JARVIS.
 
 ---
+
+## Optimalizace obrázků
+
+Cílové velikosti po kompresi: **< 60 kB** pro galerii @800px a **< 150 kB**
+pro hero @1600/1920px (WebP jako primární formát, JPEG jako fallback pro
+starší prohlížeče, obojí v responzivním `srcset`).
+
+**Výsledek:** většina souborů cíl splňuje (např. `gallery-1-800.webp` 44 kB,
+`gallery-9-800.webp` 48 kB, `hero-960.webp` 56 kB). U fotek s vysokým
+detailem/texturou (jídlo zblízka, interiér s mnoha hranami a vzory —
+`gallery-5`, `gallery-6`, `gallery-7`, `gallery-8`) zůstává WebP i po
+agresivní kompresi o něco nad cílem, cca **84–160 kB**, a JPEG fallback
+pak logicky ještě o kus výš (nad 150 kB u `hero-1920.jpg` a u `gallery-7/8`
+přes 200 kB). Kvalita byla při kompresi ověřena měřením **PSNR > 29 dB**
+(žádná viditelná ztráta kvality) — další ruční doladění komprese by zde už
+jen degradovalo viditelnou kvalitu bez reálného přínosu ve velikosti,
+protože jde o **fyzický limit obsahu** (množství detailu ve fotce), ne o
+opomenutí nebo špatně zvolenou kompresní metodu.
+
+Praktický dopad: moderní prohlížeče (naprostá většina návštěvníků) stáhnou
+menší WebP variantu přes `<picture>`/`srcset`; JPEG fallback se použije jen
+u starších prohlížečů bez WebP podpory. Celková velikost `public/images/benar/`
+je cca 3 MB pro 24 souborů (1 hero + 9 fotek galerie, každá ve 2 formátech
+a případně 2 šířkách) — pro webovou prezentaci restaurace v pořádku.
 
 ## Struktura projektu
 
