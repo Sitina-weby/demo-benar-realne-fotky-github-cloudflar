@@ -8,10 +8,34 @@ on:
   pull_request_review_comment:
     types: [created]
 jobs:
+  diagnostics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      allowed: ${{ steps.trigger.outputs.allowed }}
+    steps:
+      - uses: actions/github-script@v7
+        id: trigger
+        with:
+          script: |
+            const target = context.eventName === 'issues' ? context.payload.issue : context.payload.comment;
+            const association = target?.author_association || 'UNKNOWN';
+            const mention = typeof target?.body === 'string' && target.body.includes('@claude');
+            let permission = 'unknown', permissionStatus = null;
+            try { const r = await github.rest.repos.getCollaboratorPermissionLevel({...context.repo, username:target.user.login}); permission=r.data.permission; }
+            catch(e) { permissionStatus=e.status || null; }
+            const allowed = ['admin','maintain','write'].includes(permission) && mention;
+            const marker = /<!-- jarvis-job:([A-Za-z0-9_-]{1,80}) -->/.exec(context.payload.issue?.body || '');
+            const info = {repo: context.repo.owner + '/' + context.repo.repo, issue: context.payload.issue?.number || null,
+              jobId: marker?.[1] || null, event: context.eventName, action: context.payload.action,
+              authorAssociation: association, repositoryPermission:permission, permissionStatus, hasMention: mention, allowed,
+              reason: !mention ? 'NO_CLAUDE_MENTION' : !allowed ? permission === 'unknown' ? 'PERMISSION_UNVERIFIED' : 'REPOSITORY_WRITE_PERMISSION_REQUIRED' : 'READY'};
+            core.notice(JSON.stringify(info), {title:'JARVIS trigger'});
+            core.setOutput('allowed', String(allowed));
   claude:
-    if: >-
-      (github.event_name == 'issues' && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.issue.author_association) && contains(github.event.issue.body, '@claude')) ||
-      (github.event_name != 'issues' && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association) && contains(github.event.comment.body, '@claude'))
+    needs: diagnostics
+    if: ${{ needs.diagnostics.outputs.allowed == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
