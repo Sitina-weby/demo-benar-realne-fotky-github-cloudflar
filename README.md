@@ -22,6 +22,21 @@ pokud položka pole nemá, zobrazí se beze změny jako dřív (bez obrázku).
 
 ---
 
+## Redesign v2 (návrh, aditivní)
+
+Nový design je samostatná stránka `src/pages/redesign/index.astro` se stylopisem
+`src/styles/redesign.css`; stávající `/` ani `/jidelni-listek` se nezměnily.
+Zaměnit `/` za redesign vyžaduje schválení Vlastimila (NEEDS_APPROVAL).
+
+- Spuštění: `npm install && npm run dev`, pak `http://localhost:4321/redesign/`.
+- Statický náhled: `npm run build:preview` (astro build + `scripts/make-preview.mjs` → `.jarvis-preview/`).
+- Testy: `npm test` (beze změny, logika nedotčena).
+- **Pozn.:** v běhu, který redesign vytvořil, nebylo povoleno spustit npm, takže
+  `npm test`/`astro build` neproběhly a `.jarvis-preview/index.html` je sestaven ručně
+  podle stránky; po `npm run build:preview` se přepíše skutečným buildem.
+- Chybí: AI fotografie jídel (nástroj nebyl k dispozici; použity reálné fotky a stávající SVG ilustrace),
+  oficiální odkaz na menu (odkaz vede na vzorový lístek), ověřená otevírací doba, ověřené menu a ceny.
+
 ## Jak spustit (vývoj)
 
 ```sh

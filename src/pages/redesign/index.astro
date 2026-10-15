@@ -1,0 +1,139 @@
+---
+// Redesign v2 (aditivní) — nová stránka /redesign/. Stávající `/` zůstává beze změny.
+// Používá relativní cesty (../), aby šel statický náhled otevřít z libovolného podadresáře.
+import "../../styles/redesign.css";
+import { siteConfig as c } from "../../data/site.config";
+
+const R = "../";
+const dishes = [
+  { img: "dish-steak.svg", name: "Hovězí steaky" },
+  { img: "dish-panenka.svg", name: "Minutky z vepřové panenky" },
+  { img: "dish-losos.svg", name: "Ryby" },
+  { img: "dish-gnocchi.svg", name: "Těstoviny a gnocchi" },
+  { img: "dish-hermelin.svg", name: "Sýry" },
+  { img: "dish-detske.svg", name: "Dětská jídla" },
+];
+const photos = c.gallery.images;
+const a = c.business.address;
+const mapUrl = `https://www.openstreetmap.org/search?query=${encodeURIComponent(c.contact.mapEmbedQuery)}`;
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content={c.hero.subheadline} />
+    <link rel="icon" type="image/svg+xml" href={`${R}favicon.svg`} />
+    <title>{c.business.name} — redesign (návrh)</title>
+  </head>
+  <body class="rd">
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
+    <header class="rd-nav">
+      <div class="wrap">
+        <a class="rd-logo" href="#top">{c.business.name}</a>
+        <nav aria-label="Hlavní navigace">
+          <ul>
+            <li><a href="#o-nas">O nás</a></li>
+            <li><a href="#kuchyne">Kuchyně</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+        <a class="rd-btn" href={`${R}jidelni-listek/`}>Jídelní lístek</a>
+      </div>
+    </header>
+
+    <main id="obsah">
+      <section class="rd-hero" id="top">
+        <picture>
+          <source type="image/webp" srcset={`${R}images/benar/hero-960.webp 960w, ${R}images/benar/hero-1920.webp 1920w`} sizes="100vw" />
+          <img class="bg" src={`${R}images/benar/hero-1920.jpg`} alt="Restaurace Benar — fotografie prostoru" fetchpriority="high" />
+        </picture>
+        <div class="wrap">
+          <span class="rd-eyebrow">Divadelní restaurace · Litvínov</span>
+          <h1>{c.hero.headline}</h1>
+          <p>{c.hero.subheadline}</p>
+          <div class="rd-cta">
+            <a class="rd-btn" href={`${R}jidelni-listek/`}>Otevřít jídelní lístek</a>
+            <a class="rd-btn ghost" href={`tel:${c.business.phone}`}>Zavolat {c.business.phoneDisplay}</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="rd-sec" id="o-nas">
+        <div class="wrap rd-split">
+          <div>
+            <span class="rd-eyebrow">O nás</span>
+            <h2>Česká kuchyně v přízemí divadla</h2>
+            <p>{c.about.teaser}</p>
+            <p>{c.about.theatreConnection}</p>
+            <div class="rd-facts">
+              <div class="rd-fact"><b>{c.about.foundedYear}</b>rok založení</div>
+              <div class="rd-fact"><b>{c.ratingsSummary.facebookRecommend}</b>doporučuje (Facebook, {c.ratingsSummary.facebookReviewCount} hodnocení)</div>
+              <div class="rd-fact"><b>{c.ratingsSummary.tripadvisor.toString().replace(".", ",")}/5</b>Tripadvisor</div>
+            </div>
+          </div>
+          <picture>
+            <source type="image/webp" srcset={`${R}${photos[1].webp!.slice(1)}`} />
+            <img src={`${R}${photos[1].jpg!.slice(1)}`} alt={photos[1].alt} loading="lazy" />
+          </picture>
+        </div>
+      </section>
+
+      <section class="rd-sec paper" id="kuchyne">
+        <div class="wrap">
+          <span class="rd-eyebrow" style="color:#8f6526">Kuchyně</span>
+          <h2>Z čeho se u nás vybírá</h2>
+          <p>Kategorie ze vzorového stálého lístku. Obrázky jsou ilustrace, ne fotografie pokrmů z Benaru.</p>
+          <div class="rd-dishes">
+            {dishes.map((d) => (
+              <article class="rd-dish">
+                <img src={`${R}images/${d.img}`} alt={`Ilustrace — ${d.name}`} loading="lazy" />
+                <div><h3>{d.name}</h3></div>
+              </article>
+            ))}
+          </div>
+          <a class="rd-btn" href={`${R}jidelni-listek/`}>Celý jídelní lístek (vzorový)</a>
+          <p class="rd-note" style="margin-top:1.5rem">
+            Lístek je vzorový a nahrazuje chybějící oficiální menu. Ceny a denní nabídku zde záměrně nezobrazujeme — nejsou ověřené.
+            Až restaurace dodá oficiální odkaz/PDF s menu, nahradí se jím tlačítko výše.
+          </p>
+        </div>
+      </section>
+
+      <section class="rd-sec alt" id="galerie">
+        <div class="wrap">
+          <span class="rd-eyebrow">Galerie</span>
+          <h2>Restaurace a okolí</h2>
+          <div class="rd-gal">
+            {photos.map((p, i) => (
+              <picture>
+                <source type="image/webp" srcset={`${R}${p.webp!.slice(1)}`} />
+                <img src={`${R}${p.jpg!.slice(1)}`} alt={`${p.alt} (${i + 1}/${photos.length})`} loading="lazy" />
+              </picture>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="rd-sec" id="kontakt">
+        <div class="wrap">
+          <span class="rd-eyebrow">Kontakt</span>
+          <h2>Přijďte, nebo zavolejte</h2>
+          <div class="rd-contact">
+            <div class="rd-card"><h3>Adresa</h3><p>{c.business.fullName}<br />{a.street}<br />{a.zip} {a.city}</p><a href={mapUrl} rel="noopener">Zobrazit na mapě</a></div>
+            <div class="rd-card"><h3>Telefon</h3><p><a href={`tel:${c.business.phone}`}>{c.business.phoneDisplay}</a></p><p><a href={c.business.facebookUrl} rel="noopener">Facebook</a></p></div>
+            <div class="rd-card"><h3>Otevírací doba</h3><p><span class="rd-missing">CHYBÍ — ověřená otevírací doba</span></p><p class="rd-note">Dosavadní hodnoty byly jen ukázkové, proto je nezveřejňujeme.</p></div>
+            <div class="rd-card"><h3>Rezervace</h3><p>Telefonicky na <a href={`tel:${c.business.phone}`}>{c.business.phoneDisplay}</a>.</p><p class="rd-note">Dřívější formulář byl jen simulace, v redesignu není.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rd-foot">
+      <div class="wrap">{c.demoNotice.text}</div>
+    </footer>
+  </body>
+</html>
