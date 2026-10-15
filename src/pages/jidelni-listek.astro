@@ -1,41 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FullMenu from "../components/FullMenu.astro";
-import StickyMobileCTA from "../components/StickyMobileCTA.astro";
-import Footer from "../components/Footer.astro";
-import { siteConfig } from "../data/site.config";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { siteConfig as s } from "../data/site.config";
 ---
 
 <BaseLayout
-  title={`Jídelní lístek — ${siteConfig.business.name}`}
-  description={`Celý stálý jídelní lístek restaurace ${siteConfig.business.fullName}.`}
+  title={`Jídelní lístek — ${s.name}`}
+  description={`Jídelní lístek restaurace ${s.fullName}.`}
 >
+  <SiteHeader />
   <main id="hlavni-obsah">
     <section class="section">
-      <div class="container">
-        <p class="eyebrow">Jídelní lístek</p>
-        <h1>Celý stálý jídelní lístek</h1>
-        <p>
-          <a href="/" class="btn btn-outline">← Zpět na úvodní stránku</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container">
-        <FullMenu />
+      <div class="wrap menu-cta">
+        <span class="eyebrow">Jídelní lístek</span>
+        <h1>Jídelní lístek</h1>
+        <div class="notice">
+          <strong>Oficiální jídelní lístek zatím nemáme ověřený.</strong>
+          Jídla ani ceny proto na tomto webu neuvádíme. Aktuální nabídku vám sdělí restaurace
+          telefonicky nebo ji najdete na Facebooku.
+        </div>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn--wine" href={`tel:${s.phone}`}>Zavolat {s.phoneDisplay}</a>
+          <a class="btn btn--gold" href={s.facebookUrl} rel="noopener">Facebook restaurace</a>
+          <a class="btn btn--wine" href="/">← Zpět na úvod</a>
+        </div>
       </div>
     </section>
   </main>
-
-  <Footer />
-  <StickyMobileCTA />
+  <SiteFooter />
 </BaseLayout>
-
-<style>
-  @media (max-width: 767px) {
-    main {
-      padding-bottom: 72px;
-    }
-  }
-</style>

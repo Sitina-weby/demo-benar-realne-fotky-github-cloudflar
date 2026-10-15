@@ -1,0 +1,22 @@
+---
+import { siteConfig as s } from "../data/site.config";
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <p>
+      <strong>{s.fullName}</strong> · {s.address.street}, {s.address.zip} {s.address.city} ·
+      <a href={`tel:${s.phone}`}>{s.phoneDisplay}</a> ·
+      <a href={s.facebookUrl} rel="noopener">Facebook</a>
+    </p>
+    <div class="missing">
+      <p>
+        <strong>Demo web — obchodní ukázka, není to oficiální web restaurace.</strong>
+        Obsahuje jen ověřené údaje. Zatím chybí:
+      </p>
+      <ul>
+        {s.missing.map((m) => <li>{m}</li>)}
+      </ul>
+    </div>
+  </div>
+</footer>

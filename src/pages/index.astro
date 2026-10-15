@@ -1,52 +1,118 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import About from "../components/About.astro";
-import DailyMenu from "../components/DailyMenu.astro";
-import MenuHighlights from "../components/MenuHighlights.astro";
-import Gallery from "../components/Gallery.astro";
-import ReservationForm from "../components/ReservationForm.astro";
-import Reviews from "../components/Reviews.astro";
-import Events from "../components/Events.astro";
-import ContactMap from "../components/ContactMap.astro";
-import HoursTable from "../components/HoursTable.astro";
-import StickyMobileCTA from "../components/StickyMobileCTA.astro";
-import Footer from "../components/Footer.astro";
-import { siteConfig } from "../data/site.config";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { siteConfig as s } from "../data/site.config";
+
+const menuHref = s.menu.externalUrl ?? s.menu.pagePath;
 ---
 
-<BaseLayout title={`${siteConfig.business.name} — ${siteConfig.business.claim}`}>
+<BaseLayout title={`${s.name} — ${s.tagline}`}>
+  <SiteHeader />
   <main id="hlavni-obsah">
-    <Hero />
-    <About />
-    <DailyMenu />
-    <MenuHighlights />
-    <Gallery />
-    <ReservationForm />
-    <Reviews />
-    <Events />
-
-    <section class="section" id="kontakt-a-hodiny">
-      <div class="container contact-hours__grid">
-        <HoursTable />
+    <section class="hero">
+      <picture>
+        <source type="image/webp" srcset={s.hero.webp} />
+        <img class="hero__img" src={s.hero.jpg} alt={s.hero.alt} fetchpriority="high" />
+      </picture>
+      <div class="wrap">
+        <div class="hero__body">
+          <span class="eyebrow">Litvínov · od roku {s.foundedYear}</span>
+          <h1>{s.name}</h1>
+          <p class="hero__lead">{s.tagline}.</p>
+          <div class="btn-row">
+            <a class="btn btn--gold" href={menuHref}>Jídelní lístek</a>
+            <a class="btn btn--ghost" href={`tel:${s.phone}`}>Zavolat {s.phoneDisplay}</a>
+          </div>
+        </div>
       </div>
     </section>
-    <ContactMap />
+
+    <section class="section" id="pribeh">
+      <div class="wrap split">
+        <div>
+          <span class="eyebrow">Příběh</span>
+          <h2>Restaurace, která sdílí dům s divadlem</h2>
+          <p>
+            {s.fullName} sídlí v přízemí Docela velkého divadla na Rooseveltově ulici v Litvínově
+            a je tu od roku {s.foundedYear}.
+          </p>
+          <p>
+            Přijďte se podívat, zavolejte nám, nebo nás najděte na Facebooku. Aktuální nabídku jídel
+            a otevírací dobu vám rádi sdělí přímo v restauraci.
+          </p>
+          <div class="btn-row">
+            <a class="btn btn--wine" href={menuHref}>Zobrazit jídelní lístek</a>
+          </div>
+        </div>
+        <picture>
+          <source type="image/webp" srcset={s.storyPhoto.webp} />
+          <img src={s.storyPhoto.jpg} alt={s.storyPhoto.alt} loading="lazy" />
+        </picture>
+      </div>
+    </section>
+
+    <section class="section section--dark" aria-labelledby="hodnoceni">
+      <div class="wrap">
+        <span class="eyebrow">Hosté o nás</span>
+        <h2 id="hodnoceni">Veřejná hodnocení</h2>
+        <div class="facts">
+          {s.ratings.map((r) => (
+            <div class="fact"><strong>{r.value}</strong><span>{r.label}</span></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="jidelni-listek-odkaz">
+      <div class="wrap menu-cta">
+        <span class="eyebrow">Jídelní lístek</span>
+        <h2>Co si dáte?</h2>
+        <p>Odkaz na jídelní lístek restaurace najdete na samostatné stránce.</p>
+        <a class="btn btn--wine" href={menuHref}>Otevřít jídelní lístek</a>
+      </div>
+    </section>
+
+    <section class="section" id="galerie">
+      <div class="wrap">
+        <span class="eyebrow">Galerie</span>
+        <h2>Fotografie restaurace</h2>
+        <ul class="gallery">
+          {s.gallery.map((g) => (
+            <li>
+              <picture>
+                <source type="image/webp" srcset={g.webp} />
+                <img src={g.jpg} alt={g.alt} loading="lazy" />
+              </picture>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="kontakt">
+      <div class="wrap contact">
+        <div>
+          <span class="eyebrow">Kontakt</span>
+          <h2>Najdete nás v Litvínově</h2>
+          <dl>
+            <dt>Adresa</dt>
+            <dd>{s.address.street}, {s.address.zip} {s.address.city}</dd>
+            <dt>Telefon</dt>
+            <dd><a href={`tel:${s.phone}`}>{s.phoneDisplay}</a></dd>
+            <dt>Facebook</dt>
+            <dd><a href={s.facebookUrl} rel="noopener">Restaurace Benar Litvínov</a></dd>
+          </dl>
+        </div>
+        <iframe
+          class="map-frame"
+          title="Mapa — Restaurace Benar"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src={`https://www.google.com/maps?q=${encodeURIComponent(s.mapQuery)}&output=embed`}
+        ></iframe>
+      </div>
+    </section>
   </main>
-
-  <Footer />
-  <StickyMobileCTA />
+  <SiteFooter />
 </BaseLayout>
-
-<style>
-  .contact-hours__grid {
-    max-width: 480px;
-  }
-
-  @media (max-width: 767px) {
-    main {
-      padding-bottom: 72px;
-    }
-  }
-</style>
-

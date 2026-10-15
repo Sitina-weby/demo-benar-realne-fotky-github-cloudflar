@@ -53,6 +53,35 @@ npm run build        # vygeneruje statický build do ./dist
 
 ---
 
+## Redesign 2026-10 — stav a ověřený obsah
+
+Plný redesign (hero s fotkou, příběh, veřejná hodnocení, galerie, kontakt,
+odkaz na jídelní lístek). Neověřený obsah z dřívějšího dema (jídla, ceny,
+otevírací doba, fiktivní recenze, akce, vybavení, simulovaný rezervační
+formulář) byl **odstraněn**; původní verze zůstává v git historii
+(commit `a779d18`). Zbytek tohoto README (sekce „Předpoklady" a níže)
+popisuje starší demo a je v těchto bodech **zastaralý**.
+
+**Ověřený obsah použitý na webu:** název, adresa Rooseveltova 279 Litvínov,
+telefon 476 000 229, Facebook, rok 2004, sídlo v přízemí Docela velkého
+divadla, souhrnná hodnocení (FB 92 %, Tripadvisor/Firmy.cz 4,2), reálné fotky
+(`docs/foto-puvod-overeni.md`).
+
+**Chybí / nutno doplnit (nehádáno):** URL oficiálního jídelního lístku
+(`menu.externalUrl` v `src/data/site.config.ts`; do té doby stránka
+`/jidelni-listek` to transparentně uvádí), jídla a ceny, otevírací doba,
+e-mail, IČO/DIČ, vybavení, **AI ilustrační fotky jídel** (v tomto běhu nešlo
+vygenerovat) a inspirace webem Srdcovka (web nebyl z prostředí dostupný —
+design je obecně teplý a fotografický, nekopíruje konkrétní web).
+
+**Náhled:** `.jarvis-preview/index.html` je **ručně psaný** statický náhled
+zrcadlící Astro šablony (`npm run build` v tomto běhu nešlo spustit —
+instalace závislostí nebyla povolena). Obrázky bere z `public/images`.
+Testy ani build **nebyly spuštěny**; po `npm ci` spusťte `npm test`
+a `npm run build`.
+
+---
+
 ## Zveřejnění webu
 
 Tento projekt je připravený k zveřejnění přes JARVIS: stačí ve **VÍCE → NA

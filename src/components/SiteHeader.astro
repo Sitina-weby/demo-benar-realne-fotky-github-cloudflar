@@ -1,0 +1,15 @@
+---
+import { siteConfig as s } from "../data/site.config";
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/">{s.name}</a>
+    <nav class="nav" aria-label="Hlavní navigace">
+      <a class="hide-sm" href="/#pribeh">Příběh</a>
+      <a class="hide-sm" href="/#galerie">Galerie</a>
+      <a href={s.menu.externalUrl ?? s.menu.pagePath}>Jídelní lístek</a>
+      <a class="btn btn--gold" href={`tel:${s.phone}`}>{s.phoneDisplay}</a>
+    </nav>
+  </div>
+</header>
