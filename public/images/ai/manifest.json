@@ -1,0 +1,62 @@
+{
+  "generatedBy": "Honza (frontend_dev) via JARVIS",
+  "note": "Ilustrační AI fotografie — na webu označit jako ilustrační.",
+  "images": [
+    {
+      "file": "hero-benar-interier.webp",
+      "alt": "Ilustrační fotografie útulného interiéru restaurace",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph for a Czech local restaurant website: a welcoming, modest restaurant dining room with warm natural wood tones, deep muted green accents and subtle brass-colored highlights, softly lit tables, inviting but unbranded atmosphere. Generic interior only; do not depict distinctive architectural features or claim a specific real layout. No people, no text, signage, logos, menus or brands. Cohesive warm cinematic daylight, realistic materials, landscape hero composition with clear visual breathing room.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-benarsal.webp",
+      "alt": "Ilustrační pohled do příjemného restauračního prostředí",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant photograph, a calm welcoming dining room corner with wooden table settings, muted green and warm brass color accents, soft warm light. Generic setting, not a depiction of a verified specific interior. No people, text, signs, logos, menus or brands. Same warm cinematic daylight and realistic photographic style as the other images; square composition.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-divadelni-atmosfera.webp",
+      "alt": "Ilustrační atmosféra prázdného divadelního jeviště",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph evoking the confirmed connection between a restaurant and a theatre: an empty, generic small theatre stage with softly glowing warm footlights and deep green velvet-like tones, viewed from the audience, no distinctive venue details. No people, text, signage, logos or brands. Warm, restrained cinematic light, realistic photography, matching the restaurant image set; square composition.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-jidlo-1.webp",
+      "alt": "Ilustrační fotografie obecně pojatého hlavního jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial food photograph for a Czech restaurant demo website: an attractive but generic Central European main-course plate, seasonal-looking ingredients and natural presentation, without depicting a recognizable signature recipe or implying a verified menu item. Warm wood table, muted green and brass accents softly in background, appetizing natural light. No text, menu, logos, brands, people or hands; square composition, same warm photographic style.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-jidlo-2.webp",
+      "alt": "Ilustrační fotografie servírovaného jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial close-up food photograph for a restaurant website: a generic hearty meal served on a simple ceramic plate, visually distinct from other images, with fresh ingredients and no recognizable named or signature dish. Warm wooden surface and softly blurred muted green background, gentle warm daylight. No text, logos, brands, people or hands; square composition, cohesive realistic style.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-jidlo-3.webp",
+      "alt": "Ilustrační fotografie polévky",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial food photograph: a simple generic bowl of soup with a modest garnish, suitable as an illustrative restaurant image but not presented as a specific menu item. Neutral ceramic bowl on a warm wooden table, muted green and brass tones in soft background, gentle cinematic natural light. No text, logos, brands, people or hands; square composition matching the same photo set.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-jidlo-4.webp",
+      "alt": "Ilustrační fotografie dezertu",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial food photograph for a local restaurant demo: a small generic plated dessert, understated presentation, not a named or claimed restaurant specialty. Warm wooden table, muted green background accents and soft golden daylight, shallow depth of field. No text, logos, brands, people or hands; square composition and consistent warm realistic style.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "gallery-atmosfera-stul.webp",
+      "alt": "Ilustrační fotografie prostřeného restauračního stolu",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph of an inviting restaurant table prepared for a meal, simple plates, cutlery and subtle candle glow, warm wood with restrained deep green and brass color accents. Generic atmosphere only; no distinctive unverified interior details, no food items, no people. No text, signage, logos or brands. Warm realistic cinematic lighting consistent with the rest of the set; square composition.",
+      "model": "gpt-image-1-mini"
+    }
+  ]
+}
