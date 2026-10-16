@@ -40,7 +40,17 @@ h1, h2, h3, h4 {
 }
 
 h1 { font-size: var(--fs-4xl); }
-h2 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-3xl); letter-spacing: -0.01em; }
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--color-brass);
+  margin-top: var(--space-3);
+}
+.section--dark h2::after { background: var(--color-brass-light); }
 h3 { font-size: var(--fs-xl); }
 
 p { margin: 0 0 var(--space-4); }
@@ -120,7 +130,7 @@ a {
 
 .btn-primary {
   background: var(--color-brass);
-  color: #2f2418;
+  color: #fff;
 }
 
 .btn-primary:hover {
@@ -166,6 +176,18 @@ a {
 
 .badge-dot--open { background: var(--color-open); }
 .badge-dot--closed { background: var(--color-closed); }
+
+/* Viditelné označení chybějících / vzorových údajů ("doplní klient") */
+.todo-flag {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: #fdecd8;
+  border: 1px dashed var(--color-brass-dark);
+  color: var(--color-brass-dark);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
 
 .visually-hidden {
   position: absolute;
