@@ -1,0 +1,34 @@
+{
+  "generatedBy": "Honza (frontend_dev) via JARVIS",
+  "note": "Ilustrační AI fotografie — na webu označit jako ilustrační.",
+  "images": [
+    {
+      "file": "benar-hero-restaurant.webp",
+      "alt": "Ilustrační fotografie prostřeného stolu s jídlem v příjemné atmosféře restaurace",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial hero photograph for a restaurant website: an inviting, thoughtfully set dining table with a few generic beautifully plated dishes, glassware and subtle greenery, in an elegant but non-specific restaurant setting. No distinctive architectural features or cuisine-specific signature dish. Warm natural window light with soft golden ambient fill, calm refined atmosphere, realistic food photography, tasteful neutral tones, wide landscape composition with uncluttered negative space on the left for future page layout, no people, no text, no logos, no signage, no brands.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-food-detail.webp",
+      "alt": "Ilustrační detail obecně servírovaného jídla na talíři",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic close editorial food photograph for a restaurant website: a generic seasonal-style plated meal composed of fresh ingredients, vegetables and a simply prepared protein, artfully but naturally presented; do not make it identifiable as a named or signature dish or a particular cuisine. Warm soft window light, gentle golden ambient fill matching a refined restaurant mood, shallow depth of field, appetizing realistic textures, close three-quarter view, simple neutral tableware, no people, no text, no logos, no signage, no brands.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-interior-atmosphere.webp",
+      "alt": "Ilustrační pohled do útulně působící restaurace",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph of a welcoming, non-specific restaurant dining room, showing a few neatly arranged tables, comfortable chairs and understated decor without asserting any unique real-world interior details. Warm natural window light blended with soft golden ambient lighting, inviting evening atmosphere, refined neutral palette, realistic photography, no visible people, no readable text, no logos, no signage, no brands.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-table-mood.webp",
+      "alt": "Ilustrační detail prostřeného stolu v teplém světle",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic atmospheric restaurant photograph: close view across a table set for dining with simple ceramic plates, folded napkin, cutlery, a glass and a small generic plated dish softly visible in the background. Non-specific restaurant setting, no unique decor or cuisine claims. Warm soft natural and golden ambient light consistent with an elegant welcoming restaurant, intimate shallow depth of field, realistic editorial photography, no people, no text, no logos, no signage, no brands.",
+      "model": "gpt-image-1-mini"
+    }
+  ]
+}
