@@ -22,6 +22,22 @@ pokud položka pole nemá, zobrazí se beze změny jako dřív (bez obrázku).
 
 ---
 
+## Redesign (úkol dev_d93963834d39e073dde97a3f)
+
+Nový vzhled: vínovo-měděná paleta, sticky hlavička s odkazem na jídelní lístek,
+dvousloupcové hero s koláží skutečných fotek, výrazný pruh „Jídelní lístek"
+(odkaz na `/jidelni-listek`), mozaiková galerie a sekce hodnocení.
+Srdcovku se nepodařilo otevřít (WebFetch zamítnut), takže jde o obecnou inspiraci, ne o kopii.
+
+**Doplní klient (nic nebylo vymyšleno):**
+- ověřený jídelní lístek a ceny — ceny jsou skryté (`verified.menuAndPrices = false` v `site.config.ts`), položky označeny jako vzorové;
+- otevírací doba — živý odznak otevřeno/zavřeno je skrytý (`verified.openingHours = false`);
+- externí odkaz na lístek (`menuLink.externalUrl`), recenze hostů a akce (odstraněny vymyšlené citace i akce);
+- AI ilustrační fotky: větev `jarvis/assets-dev_d93963834d39e073dde97a3f` v repu neexistuje, proto web používá jen poskytnuté reálné fotky; ilustrace jídel v lístku zůstávají SVG „DEMO FOTO".
+- z galerie vyřazeny 2 poskytnuté soubory (plakát akce z 2025, reklama Becherovky).
+
+---
+
 ## Jak spustit (vývoj)
 
 ```sh

@@ -5,20 +5,20 @@
 */
 :root {
   /* --- Barvy: základ --- */
-  --color-bg: #faf3e8;
-  --color-bg-alt: #f2e6d2;
+  --color-bg: #fbf6ee;
+  --color-bg-alt: #f1e4d0;
   --color-surface: #ffffff;
 
-  /* --- Barvy: tmavě hnědá/zelená --- */
-  --color-ink: #2f2418;
-  --color-ink-soft: #4a3b28;
-  --color-forest: #26332a;
-  --color-forest-light: #34452f;
+  /* --- Barvy: vínová/tmavě hnědá (název proměnné "forest" zůstal kvůli komponentám) --- */
+  --color-ink: #2a1d17;
+  --color-ink-soft: #4a3228;
+  --color-forest: #3a1618;
+  --color-forest-light: #5a2327;
 
-  /* --- Zlatavý/mosazný akcent --- */
-  --color-brass: #b8863b;
-  --color-brass-light: #d9a95c;
-  --color-brass-dark: #8f6526;
+  /* --- Měděný akcent --- */
+  --color-brass: #c07a3a;
+  --color-brass-light: #efb877;
+  --color-brass-dark: #8a4a17;
 
   /* --- Stavové barvy --- */
   --color-open: #3f6b4a;
@@ -53,7 +53,7 @@
   /* --- Tvary --- */
   --radius-sm: 4px;
   --radius-md: 10px;
-  --radius-lg: 18px;
+  --radius-lg: 24px;
   --radius-pill: 999px;
 
   /* --- Stíny --- */

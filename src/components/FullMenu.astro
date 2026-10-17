@@ -5,7 +5,8 @@
 // site.config.ts).
 import { siteConfig } from "../data/site.config";
 
-const { fullMenu } = siteConfig;
+const { fullMenu, verified } = siteConfig;
+const priceLabel = (p: number) => (verified.menuAndPrices ? `${p} Kč` : "cena: doplní klient");
 ---
 
 <div class="full-menu">
@@ -30,7 +31,7 @@ const { fullMenu } = siteConfig;
                 <span class="full-menu__item-name">
                   {item.name} <span class="full-menu__item-weight">({item.weight})</span>
                 </span>
-                <span class="full-menu__item-price">{item.price} Kč</span>
+                <span class="full-menu__item-price">{priceLabel(item.price)}</span>
               </li>
             ))}
           </ul>

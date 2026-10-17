@@ -1,7 +1,8 @@
 ---
 import { siteConfig } from "../data/site.config";
 
-const { dailyMenu } = siteConfig;
+const { dailyMenu, verified } = siteConfig;
+const priceLabel = (p: number) => (verified.menuAndPrices ? `${p} Kč` : "cena: doplní klient");
 ---
 
 <section class="section section--alt" id="denni-menu">
@@ -26,7 +27,7 @@ const { dailyMenu } = siteConfig;
       <span class="daily-menu__label">Polévka</span>
       <span class="daily-menu__name">{dailyMenu.soup.name}</span>
       <span class="daily-menu__allergens">Alergeny: {dailyMenu.soup.allergens.join(", ")}</span>
-      <span class="daily-menu__price">{dailyMenu.soup.price} Kč</span>
+      <span class="daily-menu__price">{priceLabel(dailyMenu.soup.price)}</span>
     </div>
 
     <ul class="daily-menu__list">
@@ -46,7 +47,7 @@ const { dailyMenu } = siteConfig;
               <span class="daily-menu__name">{dish.name}</span>
               <span class="daily-menu__weight">{dish.weight} &middot; alergeny: {dish.allergens.join(", ")}</span>
             </div>
-            <span class="daily-menu__price">{dish.price} Kč</span>
+            <span class="daily-menu__price">{priceLabel(dish.price)}</span>
           </li>
         ))
       }

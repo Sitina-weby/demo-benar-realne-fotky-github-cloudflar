@@ -1,0 +1,66 @@
+---
+import { siteConfig } from "../data/site.config";
+
+const { business, menuLink } = siteConfig;
+const menuHref = menuLink.externalUrl ?? menuLink.href;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand">{business.name}</a>
+    <nav class="site-header__nav" aria-label="Hlavní navigace">
+      <a href={menuHref}>{menuLink.label}</a>
+      <a href="/#galerie">Galerie</a>
+      <a href="/#rezervace">Rezervace</a>
+      <a href="/#kontakt-a-hodiny">Kontakt</a>
+    </nav>
+    <a href={`tel:${business.phone}`} class="btn btn-primary site-header__call">{business.phoneDisplay}</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-forest);
+    color: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 64px;
+  }
+  .site-header__brand {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .site-header__nav {
+    display: none;
+    gap: var(--space-6);
+  }
+  .site-header__nav a {
+    color: #f1e4d0;
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+  .site-header__nav a:hover {
+    color: var(--color-brass-light);
+  }
+  .site-header__call {
+    padding: 0.45rem 1rem;
+  }
+  @media (min-width: 768px) {
+    .site-header__nav {
+      display: flex;
+    }
+  }
+</style>

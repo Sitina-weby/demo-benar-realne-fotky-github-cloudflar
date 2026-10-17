@@ -7,7 +7,8 @@ import MenuHighlights from "../components/MenuHighlights.astro";
 import Gallery from "../components/Gallery.astro";
 import ReservationForm from "../components/ReservationForm.astro";
 import Reviews from "../components/Reviews.astro";
-import Events from "../components/Events.astro";
+import Header from "../components/Header.astro";
+import MenuCta from "../components/MenuCta.astro";
 import ContactMap from "../components/ContactMap.astro";
 import HoursTable from "../components/HoursTable.astro";
 import StickyMobileCTA from "../components/StickyMobileCTA.astro";
@@ -16,15 +17,16 @@ import { siteConfig } from "../data/site.config";
 ---
 
 <BaseLayout title={`${siteConfig.business.name} — ${siteConfig.business.claim}`}>
+  <Header />
   <main id="hlavni-obsah">
     <Hero />
+    <MenuCta />
     <About />
     <DailyMenu />
     <MenuHighlights />
     <Gallery />
     <ReservationForm />
     <Reviews />
-    <Events />
 
     <section class="section" id="kontakt-a-hodiny">
       <div class="container contact-hours__grid">

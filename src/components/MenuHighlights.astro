@@ -1,7 +1,8 @@
 ---
 import { siteConfig } from "../data/site.config";
 
-const { highlights } = siteConfig;
+const { highlights, verified } = siteConfig;
+const priceLabel = (p: number) => (verified.menuAndPrices ? `${p} Kč` : "cena: doplní klient");
 ---
 
 <section class="section" id="jidelni-listek">
@@ -23,7 +24,7 @@ const { highlights } = siteConfig;
               <p class="highlights__desc">{item.description}</p>
               <div class="highlights__meta">
                 <span>{item.weight}</span>
-                <span class="highlights__price">{item.price} Kč</span>
+                <span class="highlights__price">{priceLabel(item.price)}</span>
               </div>
             </div>
           </article>

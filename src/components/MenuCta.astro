@@ -1,0 +1,50 @@
+---
+import { siteConfig } from "../data/site.config";
+
+const { menuLink, fullMenu, verified } = siteConfig;
+const href = menuLink.externalUrl ?? menuLink.href;
+---
+
+<section class="menu-cta" id="jidelni-listek-odkaz">
+  <div class="container menu-cta__inner">
+    <div>
+      <p class="eyebrow">Co dobrého si dáte</p>
+      <h2>Prohlédněte si jídelní lístek</h2>
+      <p>
+        {fullMenu.categories.length} kategorií pokrmů na jednom místě.
+        {!verified.menuAndPrices && " Položky a ceny jsou zatím vzorové — skutečný lístek doplní klient."}
+      </p>
+    </div>
+    <a href={href} class="btn btn-primary menu-cta__btn">{menuLink.label} →</a>
+  </div>
+</section>
+
+<style>
+  .menu-cta {
+    background: var(--color-brass);
+    color: var(--color-ink);
+    padding-block: var(--space-12);
+  }
+  .menu-cta h2 {
+    color: var(--color-forest);
+  }
+  .menu-cta .eyebrow {
+    color: var(--color-forest);
+  }
+  .menu-cta__inner {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  .menu-cta__btn {
+    background: var(--color-forest);
+    border-color: var(--color-forest);
+    color: #fff;
+    justify-self: start;
+  }
+  @media (min-width: 768px) {
+    .menu-cta__inner {
+      grid-template-columns: 1fr auto;
+    }
+  }
+</style>

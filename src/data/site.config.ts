@@ -84,12 +84,11 @@ export const siteConfig = {
     headline: "Restaurace Benar",
     subheadline:
       "Poctivá česká kuchyně a steaky od roku 2004 — v přízemí Docela velkého divadla v Litvínově",
+    // Koláž v pravé části hero: skutečné fotografie restaurace (800 px zdroje, bez zvětšování).
     images: [
-      {
-        webp: "/images/benar/hero-1920.webp",
-        jpg: "/images/benar/hero-1920.jpg",
-        alt: "Restaurace Benar — fotografie prostoru",
-      },
+      { webp: "/images/benar/gallery-6-800.webp", jpg: "/images/benar/gallery-6-800.jpg", alt: "Pečená kachna s knedlíkem, zelím a červeným zelím na talíři" },
+      { webp: "/images/benar/gallery-4-800.webp", jpg: "/images/benar/gallery-4-800.jpg", alt: "Lívanečky s krémem, malinami a borůvkami" },
+      { webp: "/images/benar/gallery-1-800.webp", jpg: "/images/benar/gallery-1-800.jpg", alt: "Burger s hranolky na černém talíři" },
     ] as GalleryImage[],
     bullets: [
       "Denní obědové menu každý všední den",
@@ -118,7 +117,7 @@ export const siteConfig = {
   },
 
   dailyMenu: {
-    note: "Ukázkové menu — aktuální denní nabídku doplní restaurace",
+    note: "Vzorové menu — jídla a ceny nejsou ověřené, aktuální nabídku doplní klient",
     servedTime: "11:00–14:00",
     date: "vzorový všední den",
     soup: {
@@ -188,7 +187,7 @@ export const siteConfig = {
 
   // Stálý jídelní lístek — přesně 11 kategorií, celkem přesně 18 položek.
   fullMenu: {
-    note: "Stálý lístek — bez alergenové tabulky (uvedena u denního menu); ceny orientační, aktuální ceník ověří restaurace.",
+    note: "Vzorový lístek — položky a ceny nejsou ověřené, skutečný lístek doplní klient.",
     categories: [
       {
         name: "Studené předkrmy",
@@ -268,41 +267,21 @@ export const siteConfig = {
 
   gallery: {
     note:
-      "Reálné fotografie restaurace Benar a okolí (Litvínov, Krušné hory). " +
-      "Výběr a pořadí fotek je automatický (bez ruční vizuální kurace) — pokud budete chtít " +
-      "přesnější popisky nebo jiné pořadí, stačí fotky podle skutečného obsahu přejmenovat " +
-      "a upravit alt texty níže.",
+      "Fotografie jídel a nápojů z Benaru poskytnuté klientem (původ: docs/foto-puvod-overeni.md). " +
+      "AI ilustrační fotografie zatím nejsou součástí webu — větev s AI fotkami nebyla k dispozici.",
+    // Vyřazeny 2 poskytnuté soubory: gallery-3 (plakát akce s datem 2025) a gallery-7 (reklama třetí strany).
     images: [
-      { webp: "/images/benar/gallery-1-800.webp", jpg: "/images/benar/gallery-1-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-2-800.webp", jpg: "/images/benar/gallery-2-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-3-800.webp", jpg: "/images/benar/gallery-3-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-4-800.webp", jpg: "/images/benar/gallery-4-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-5-800.webp", jpg: "/images/benar/gallery-5-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-6-800.webp", jpg: "/images/benar/gallery-6-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-7-800.webp", jpg: "/images/benar/gallery-7-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-8-800.webp", jpg: "/images/benar/gallery-8-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
-      { webp: "/images/benar/gallery-9-800.webp", jpg: "/images/benar/gallery-9-800.jpg", alt: "Restaurace Benar — fotografie prostoru" },
+      { webp: "/images/benar/gallery-6-800.webp", jpg: "/images/benar/gallery-6-800.jpg", alt: "Pečená kachna s knedlíkem, zelím a červeným zelím" },
+      { webp: "/images/benar/gallery-9-800.webp", jpg: "/images/benar/gallery-9-800.jpg", alt: "Burger se sezamovou houskou a hranolky s kečupem" },
+      { webp: "/images/benar/gallery-4-800.webp", jpg: "/images/benar/gallery-4-800.jpg", alt: "Lívanečky s krémem, malinami a borůvkami" },
+      { webp: "/images/benar/gallery-8-800.webp", jpg: "/images/benar/gallery-8-800.jpg", alt: "Plněné taštičky s osmaženou cibulkou a salátem z červené řepy" },
+      { webp: "/images/benar/gallery-5-800.webp", jpg: "/images/benar/gallery-5-800.jpg", alt: "Paštika na tmavém chlebu s okurkou a červenou cibulí" },
+      { webp: "/images/benar/gallery-2-800.webp", jpg: "/images/benar/gallery-2-800.jpg", alt: "Točené pivo na dřevěném stole" },
     ] as GalleryImage[],
   },
 
-  // Přesně 3 demo recenze, fiktivní jména, parafráze reálného tónu hodnocení.
-  reviews: [
-    {
-      name: "Petr K. (demo recenze)",
-      text: "Chodíme sem na nedělní obědy už roky, svíčková je pokaždé skvělá a personál nás zná jménem. Kluci si užijí dětský koutek, my klid na kávu.",
-      note: "parafráze typického tónu recenzí",
-    },
-    {
-      name: "Jana S. (demo recenze)",
-      text: "Dali jsme si steak na oslavu výročí a byl to jeden z nejlepších, co jsem v Litvínově jedla. Navíc ta atmosféra s divadlem vedle je fakt neotřelá.",
-      note: "parafráze typického tónu recenzí",
-    },
-    {
-      name: "Tomáš H. (demo recenze)",
-      text: "Byli jsme na firemním obědě, obsluha byla rychlá a milá i na plný sál. Zahrádka v létě je bonus, určitě se vrátíme.",
-      note: "parafráze typického tónu recenzí",
-    },
-  ] as Review[],
+  // Citace hostů nevymýšlíme — doplní klient z reálných hodnocení.
+  reviews: [] as Review[],
 
   ratingsSummary: {
     facebookRecommend: "92 %",
@@ -313,27 +292,26 @@ export const siteConfig = {
   },
 
   // 1–2 ukázkové položky, volitelný blok díky divadelní vazbě.
-  events: [
-    {
-      title: "Divadelní představení v restauraci",
-      date: "termín bude upřesněn",
-      description:
-        "Několikrát do roka se v jídelním sále odehraje krátké představení Docela velkého divadla přímo mezi stoly — večeře s kulturním zážitkem navíc.",
-      note: "Příklad — termíny doplní restaurace",
-    },
-    {
-      title: "Ochutnávka steaků",
-      date: "termín bude upřesněn",
-      description: "Sezónní večer zaměřený na naše steakové speciality s degustačním menu.",
-      note: "Příklad — termíny doplní restaurace",
-    },
-  ] as EventItem[],
+  events: [] as EventItem[], // akce nejsou ověřené — doplní klient
 
   reservation: {
     mode: "phone_primary_plus_form" as const,
     phone: "476 000 229",
     intro:
       "Nejrychlejší cestou k jistému stolu je zavolat přímo do restaurace. Rádi ale vezmeme v potaz i rezervaci přes formulář níže.",
+  },
+
+  // Odkaz na jídelní lístek. Ověřený externí lístek (menicka.cz apod.) nemáme — doplní klient.
+  menuLink: {
+    label: "Jídelní lístek",
+    href: "/jidelni-listek",
+    externalUrl: null as string | null,
+  },
+
+  // Dokud jsou false, web nezobrazuje ceny ani živý stav otevřeno/zavřeno.
+  verified: {
+    menuAndPrices: false,
+    openingHours: false,
   },
 
   ordering: {
@@ -355,7 +333,7 @@ export const siteConfig = {
   },
 
   hours: {
-    note: "Ukázkové otevírací hodiny — přesné údaje ověří restaurace",
+    note: "Otevírací doba není ověřena — doplní klient. Uvedené časy jsou pouze ukázkové.",
     schedule: {
       mon: "11:00–22:00",
       tue: "11:00–22:00",
@@ -370,7 +348,7 @@ export const siteConfig = {
 
   demoNotice: {
     text:
-      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Denní menu a recenze jsou vzorové (demo) obsahy. Finální web pro Restauraci Benar by obsahoval aktuální obsah dodaný restaurací.",
+      "Toto je ukázkový (demo) web vytvořený jako obchodní ukázka produktu. Denní menu, lístek, ceny a otevírací doba jsou vzorové a neověřené — doplní klient. Finální web pro Restauraci Benar by obsahoval aktuální obsah dodaný restaurací.",
   },
 };
 
