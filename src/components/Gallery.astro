@@ -1,66 +1,23 @@
 ---
 import { siteConfig } from "../data/site.config";
-
 const { gallery } = siteConfig;
-
-// Grid: 2 sloupce pod 640px, 3 sloupce od 640px výš (viz CSS níže).
-const gallerySizes = "(max-width: 639px) 50vw, 33vw";
-
-// Pouze gallery-1 má reálně vygenerovanou větší (1600w) variantu vedle 800w
-// (gallery-1-1600.jpg/webp v public/images/benar/). Ostatní fotky mají jen
-// 800px zdroj, pro ty srcset se dvěma šířkami nedává smysl (soubor by neexistoval).
 ---
 
 <section class="section section--alt" id="galerie">
   <div class="container">
-    <p class="eyebrow">Atmosféra u nás</p>
-    <h2>Galerie</h2>
-    <p class="gallery__note">{gallery.note}</p>
-
+    <p class="eyebrow">Atmosféra</p>
+    <h2>{gallery.heading}</h2>
+    <p class="gallery__note">{gallery.note}{gallery.aiNote ? " " + gallery.aiNote : ""}</p>
     <div class="gallery__grid">
       {
-        gallery.images.map((img) => {
-          const hasHighRes = img.webp?.includes("gallery-1-800") && img.jpg?.includes("gallery-1-800");
-          const webpHigh = hasHighRes ? img.webp!.replace("gallery-1-800.webp", "gallery-1-1600.webp") : null;
-          const jpgHigh = hasHighRes ? img.jpg!.replace("gallery-1-800.jpg", "gallery-1-1600.jpg") : null;
-
-          return img.webp && img.jpg ? (
-            <figure class="gallery__item">
-              <picture>
-                {hasHighRes ? (
-                  <>
-                    <source
-                      type="image/webp"
-                      srcset={`${img.webp} 800w, ${webpHigh} 1600w`}
-                      sizes={gallerySizes}
-                    />
-                    <source
-                      type="image/jpeg"
-                      srcset={`${img.jpg} 800w, ${jpgHigh} 1600w`}
-                      sizes={gallerySizes}
-                    />
-                    <img
-                      src={img.jpg}
-                      srcset={`${img.jpg} 800w, ${jpgHigh} 1600w`}
-                      sizes={gallerySizes}
-                      alt={img.alt}
-                      loading="lazy"
-                    />
-                  </>
-                ) : (
-                  <>
-                    <source srcset={img.webp} type="image/webp" />
-                    <img src={img.jpg} alt={img.alt} loading="lazy" />
-                  </>
-                )}
-              </picture>
-            </figure>
-          ) : (
-            <figure class="gallery__item">
-              <img src={img.src} alt={img.alt} loading="lazy" />
-            </figure>
-          );
-        })
+        gallery.images.map((img, i) => (
+          <figure class:list={["gallery__item", i % 5 === 0 && "gallery__item--wide"]}>
+            <picture>
+              <source type="image/webp" srcset={img.webp} />
+              <img src={img.jpg} alt={img.alt} loading="lazy" />
+            </picture>
+          </figure>
+        ))
       }
     </div>
   </div>
@@ -69,62 +26,44 @@ const gallerySizes = "(max-width: 639px) 50vw, 33vw";
 <style>
   .gallery__note {
     font-size: var(--fs-sm);
-    font-style: italic;
     color: var(--color-ink-soft);
     margin-bottom: var(--space-8);
   }
   .gallery__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
     gap: var(--space-3);
   }
   .gallery__item {
     margin: 0;
-    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-md);
   }
   .gallery__item picture {
     display: block;
+    height: 100%;
   }
   .gallery__item img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     display: block;
-    transition: transform 0.25s ease;
+    transition: transform 0.3s ease;
   }
   .gallery__item:hover img {
-    transform: scale(1.04);
+    transform: scale(1.05);
   }
-
-  /*
-   * 9 reálných fotek se beze zbytku dělí 3 sloupci (3× 3 fotky na řádek),
-   * proto má galerie na tabletu i desktopu 3 sloupce místo dřívějších 4 —
-   * se 4 sloupci by poslední řádek obsahoval jen 1 osamocenou fotku ze 4.
-   * Pravidlo níže navíc ošetří i budoucí lichý počet fotek obecně: pokud by
-   * v posledním řádku zbyla jediná položka, roztáhne se přes celou šířku
-   * gridu, takže nikdy nezůstane "viset" osamocená karta v rohu.
-   */
-  .gallery__item:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    max-width: min(100%, 420px);
-    justify-self: center;
+  .gallery__item--wide {
+    grid-column: span 2;
   }
-
-  @media (min-width: 640px) {
+  .gallery__item--wide img {
+    aspect-ratio: 16 / 9;
+  }
+  @media (min-width: 860px) {
     .gallery__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    .gallery__item:last-child:nth-child(3n + 1) {
-      grid-column: 1 / -1;
-      max-width: min(100%, 420px);
-      justify-self: center;
-    }
-  }
-  @media (min-width: 992px) {
-    .gallery__grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>

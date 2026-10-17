@@ -1,0 +1,78 @@
+---
+import { siteConfig } from "../data/site.config";
+const { contact, business, reservation } = siteConfig;
+const mapSrc = "https://www.google.com/maps?q=" + encodeURIComponent(contact.mapEmbedQuery) + "&output=embed";
+---
+
+<section class="section" id="rezervace">
+  <div class="container reserve">
+    <p class="eyebrow">{reservation.heading}</p>
+    <h2>{reservation.text}</h2>
+    <a href={"tel:" + business.phone} class="btn btn-primary">Zavolat {business.phoneDisplay}</a>
+  </div>
+</section>
+
+<section class="section section--alt" id="kontakt">
+  <div class="container contact__grid">
+    <div class="card">
+      <h2>Kontakt</h2>
+      <dl class="contact__list">
+        <dt>Adresa</dt>
+        <dd><a href={contact.mapLinkUrl} target="_blank" rel="noopener noreferrer">{contact.address}</a></dd>
+        <dt>Telefon</dt>
+        <dd><a href={"tel:" + business.phone}>{business.phoneDisplay}</a></dd>
+        <dt>Facebook</dt>
+        <dd><a href={business.facebookUrl} target="_blank" rel="noopener noreferrer">Restaurace Benar Litvínov</a></dd>
+        <dt>Otevírací doba</dt>
+        <dd class="todo">doplní klient</dd>
+        <dt>E-mail</dt>
+        <dd class="todo">doplní klient</dd>
+      </dl>
+    </div>
+    <iframe
+      src={mapSrc}
+      class="contact__map"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa — poloha restaurace Benar"></iframe>
+  </div>
+</section>
+
+<style>
+  .reserve {
+    text-align: center;
+    max-width: 640px;
+  }
+  .contact__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .contact__list {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-2) var(--space-6);
+    margin: 0;
+  }
+  .contact__list dt {
+    font-weight: 700;
+    color: var(--color-ink-soft);
+  }
+  .contact__list dd {
+    margin: 0;
+  }
+  .todo {
+    font-style: italic;
+    color: var(--color-closed);
+  }
+  .contact__map {
+    border: 0;
+    width: 100%;
+    min-height: 320px;
+    border-radius: var(--radius-lg);
+  }
+  @media (min-width: 860px) {
+    .contact__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

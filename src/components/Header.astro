@@ -1,0 +1,62 @@
+---
+import { siteConfig } from "../data/site.config";
+const { business, menu } = siteConfig;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand">{business.name}</a>
+    <nav class="site-header__nav" aria-label="Hlavní navigace">
+      <a href="/#o-nas">O nás</a>
+      <a href={menu.url ?? menu.pagePath}>Jídelní lístek</a>
+      <a href="/#galerie">Galerie</a>
+      <a href="/#kontakt">Kontakt</a>
+      <a href={"tel:" + business.phone} class="btn btn-primary site-header__cta">{business.phoneDisplay}</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: absolute;
+    inset: 0 0 auto 0;
+    z-index: 30;
+    color: #fff;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-4);
+  }
+  .site-header__brand {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    color: #fff;
+    text-decoration: none;
+  }
+  .site-header__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .site-header__nav a:not(.btn) {
+    display: none;
+    color: #fff;
+    text-decoration: none;
+    font-size: var(--fs-sm);
+    letter-spacing: 0.04em;
+  }
+  .site-header__nav a:not(.btn):hover {
+    color: var(--color-brass-light);
+  }
+  .site-header__cta {
+    padding: 0.5rem 1.1rem;
+    color: var(--color-ink);
+  }
+  @media (min-width: 768px) {
+    .site-header__nav a:not(.btn) {
+      display: inline;
+    }
+  }
+</style>

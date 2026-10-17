@@ -1,41 +1,48 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import FullMenu from "../components/FullMenu.astro";
 import StickyMobileCTA from "../components/StickyMobileCTA.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../data/site.config";
+
+const { menu, business } = siteConfig;
 ---
 
-<BaseLayout
-  title={`Jídelní lístek — ${siteConfig.business.name}`}
-  description={`Celý stálý jídelní lístek restaurace ${siteConfig.business.fullName}.`}
->
+<BaseLayout title={"Jídelní lístek — " + business.name} description={"Jídelní lístek restaurace " + business.fullName + "."}>
   <main id="hlavni-obsah">
     <section class="section">
-      <div class="container">
-        <p class="eyebrow">Jídelní lístek</p>
-        <h1>Celý stálý jídelní lístek</h1>
-        <p>
-          <a href="/" class="btn btn-outline">← Zpět na úvodní stránku</a>
-        </p>
-      </div>
-    </section>
-
-    <section class="section section--alt">
-      <div class="container">
-        <FullMenu />
+      <div class="container menu-page__inner">
+        <p class="eyebrow">{business.name}</p>
+        <h1>{menu.heading}</h1>
+        {
+          menu.url ? (
+            <p><a href={menu.url} class="btn btn-primary">Otevřít jídelní lístek</a></p>
+          ) : (
+            <div class="card">
+              <p class="todo"><strong>Doplní klient.</strong> {menu.pending}</p>
+              <p>
+                <a href={"tel:" + business.phone} class="btn btn-primary">Zavolat {business.phoneDisplay}</a>
+                <a href={business.facebookUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline menu-page__fb">Facebook restaurace</a>
+              </p>
+            </div>
+          )
+        }
+        <p><a href="/">← Zpět na úvodní stránku</a></p>
       </div>
     </section>
   </main>
-
   <Footer />
   <StickyMobileCTA />
 </BaseLayout>
 
 <style>
-  @media (max-width: 767px) {
-    main {
-      padding-bottom: 72px;
-    }
+  .menu-page__inner {
+    max-width: 720px;
+  }
+  .todo {
+    color: var(--color-closed);
+  }
+  .menu-page__fb {
+    color: var(--color-forest);
+    margin-left: var(--space-2);
   }
 </style>

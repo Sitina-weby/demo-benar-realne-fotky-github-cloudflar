@@ -2,8 +2,17 @@ import { describe, it, expect } from "vitest";
 import { getHoursStatus, type HoursSchedule } from "./hours";
 import { siteConfig } from "../data/site.config";
 
-// Rozvrh dle site.config.ts: Po-Čt 11:00-22:00, Pá-So 11:00-23:00, Ne 11:00-22:00.
-const schedule: HoursSchedule = siteConfig.hours.schedule;
+// TESTOVACÍ rozvrh pro ověření logiky getHoursStatus — NEJDE o skutečnou otevírací
+// dobu restaurace (ta je na webu označena „doplní klient“).
+const schedule: HoursSchedule = {
+  mon: "11:00–22:00",
+  tue: "11:00–22:00",
+  wed: "11:00–22:00",
+  thu: "11:00–22:00",
+  fri: "11:00–23:00",
+  sat: "11:00–23:00",
+  sun: "11:00–22:00",
+};
 
 /**
  * Pomocná funkce: vytvoří Date odpovídající danému lokálnímu času v Praze.
@@ -81,73 +90,32 @@ describe("getHoursStatus", () => {
   });
 });
 
-describe("site.config.ts — kontrola přesných počtů dle akceptačních kritérií", () => {
-  it("denní menu má přesně 8 hlavních jídel, každé v cenovém rozpětí 160-190 Kč", () => {
-    expect(siteConfig.dailyMenu.mainDishes.length).toBe(8);
-    siteConfig.dailyMenu.mainDishes.forEach((dish) => {
-      expect(dish.price).toBeGreaterThanOrEqual(160);
-      expect(dish.price).toBeLessThanOrEqual(190);
-      expect(Array.isArray(dish.allergens)).toBe(true);
-      expect(dish.allergens.length).toBeGreaterThan(0);
-      expect(dish.weight).toMatch(/\d/);
-    });
-    // Čísla musí být 1-8 bez děr a duplicit
-    const numbers = siteConfig.dailyMenu.mainDishes.map((d) => d.number).sort((a, b) => a - b);
-    expect(numbers).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
-  });
-
-  it("denní menu má přesně 1 polévku", () => {
-    expect(siteConfig.dailyMenu.soup).toBeDefined();
-    expect(siteConfig.dailyMenu.soup.name.length).toBeGreaterThan(0);
-  });
-
-  it("stálý lístek má přesně 11 kategorií", () => {
-    expect(siteConfig.fullMenu.categories.length).toBe(11);
-  });
-
-  it("stálý lístek má celkem přesně 18 položek", () => {
-    const totalItems = siteConfig.fullMenu.categories.reduce(
-      (sum, cat) => sum + cat.items.length,
-      0
-    );
-    expect(totalItems).toBe(18);
-  });
-
-  it("obsahuje přesně 3 recenze", () => {
-    expect(siteConfig.reviews.length).toBe(3);
-  });
-
-  it("obsahuje přesně 6 highlights položek", () => {
-    expect(siteConfig.highlights.length).toBe(6);
-  });
-
-  it("galerie má 8-12 fotek", () => {
-    expect(siteConfig.gallery.images.length).toBeGreaterThanOrEqual(8);
-    expect(siteConfig.gallery.images.length).toBeLessThanOrEqual(12);
-  });
-
-  it("obsahuje 1-2 events položky", () => {
-    expect(siteConfig.events.length).toBeGreaterThanOrEqual(1);
-    expect(siteConfig.events.length).toBeLessThanOrEqual(2);
-  });
-
-  it("reálné kontaktní údaje jsou konzistentní (adresa, telefon, FB)", () => {
+describe("site.config.ts — ověřený obsah, žádná vymyšlená fakta", () => {
+  it("kontaktní údaje jsou konzistentní (adresa, telefon)", () => {
     expect(siteConfig.business.address.street).toBe("Rooseveltova 279");
     expect(siteConfig.business.address.city).toBe("Litvínov");
     expect(siteConfig.business.phoneDisplay).toBe("476 000 229");
     expect(siteConfig.contact.address).toContain("Rooseveltova 279");
-    expect(siteConfig.contact.facebookUrl).toBe(siteConfig.business.facebookUrl);
   });
 
-  it("about zmiňuje rok 2004 a divadlo", () => {
+  it("galerie obsahuje 8-12 reálných fotek", () => {
+    expect(siteConfig.gallery.images.length).toBeGreaterThanOrEqual(8);
+    expect(siteConfig.gallery.images.length).toBeLessThanOrEqual(12);
+  });
+
+  it("jídelní lístek má odkaz nebo viditelnou položku doplní klient", () => {
+    expect(siteConfig.menu.url !== null || siteConfig.menu.pending.includes("doplní klient")).toBe(true);
+    expect(siteConfig.menu.pagePath).toBe("/jidelni-listek");
+  });
+
+  it("neověřené údaje jsou vedeny v seznamu missing", () => {
+    const labels = siteConfig.missing.map((m) => m.label);
+    expect(labels).toContain("Otevírací doba");
+    expect(labels).toContain("Jídelní lístek a ceny");
+  });
+
+  it("zmiňuje rok 2004 a divadlo", () => {
     expect(siteConfig.about.foundedYear).toBe(2004);
-    const combined = siteConfig.about.paragraphs.join(" ") + siteConfig.about.teaser;
-    expect(combined).toMatch(/2004/);
-    expect(combined.toLowerCase()).toMatch(/divadl/);
-  });
-
-  it("hero zmiňuje divadlo v podnadpisu", () => {
-    expect(siteConfig.hero.subheadline.toLowerCase()).toMatch(/divadl/);
-    expect(siteConfig.hero.subheadline).toMatch(/2004/);
+    expect(siteConfig.about.paragraphs.join(" ").toLowerCase()).toMatch(/divadl/);
   });
 });

@@ -2,51 +2,22 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
-import DailyMenu from "../components/DailyMenu.astro";
-import MenuHighlights from "../components/MenuHighlights.astro";
+import MenuCta from "../components/MenuCta.astro";
 import Gallery from "../components/Gallery.astro";
-import ReservationForm from "../components/ReservationForm.astro";
-import Reviews from "../components/Reviews.astro";
-import Events from "../components/Events.astro";
-import ContactMap from "../components/ContactMap.astro";
-import HoursTable from "../components/HoursTable.astro";
+import Contact from "../components/Contact.astro";
 import StickyMobileCTA from "../components/StickyMobileCTA.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../data/site.config";
 ---
 
-<BaseLayout title={`${siteConfig.business.name} — ${siteConfig.business.claim}`}>
+<BaseLayout title={siteConfig.business.name + " — " + siteConfig.business.claim}>
   <main id="hlavni-obsah">
     <Hero />
     <About />
-    <DailyMenu />
-    <MenuHighlights />
+    <MenuCta />
     <Gallery />
-    <ReservationForm />
-    <Reviews />
-    <Events />
-
-    <section class="section" id="kontakt-a-hodiny">
-      <div class="container contact-hours__grid">
-        <HoursTable />
-      </div>
-    </section>
-    <ContactMap />
+    <Contact />
   </main>
-
   <Footer />
   <StickyMobileCTA />
 </BaseLayout>
-
-<style>
-  .contact-hours__grid {
-    max-width: 480px;
-  }
-
-  @media (max-width: 767px) {
-    main {
-      padding-bottom: 72px;
-    }
-  }
-</style>
-
