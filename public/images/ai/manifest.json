@@ -1,0 +1,62 @@
+{
+  "generatedBy": "Honza (frontend_dev) via JARVIS",
+  "note": "Ilustrační AI fotografie — na webu označit jako ilustrační.",
+  "images": [
+    {
+      "file": "benar-hero-interier.webp",
+      "alt": "Ilustrační fotografie útulné restaurace v teplém světle",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative hero photograph for a Czech restaurant website: a welcoming, timeless restaurant dining room atmosphere with warm natural oak tones, subtle deep green and muted brass accents, softly glowing practical lights, tasteful tables set simply, inviting depth and calm evening ambience. Keep architectural details generic and unidentifiable; no specific signature decor. No people, no text, no signs, no logos, no brands. Natural cinematic warm light, refined editorial food-and-hospitality photography, realistic materials, uncluttered composition with clear negative space in the lower-left for website overlay.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-interier.webp",
+      "alt": "Ilustrační pohled do útulného restauračního interiéru",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative restaurant photograph, a closer view of a generic welcoming dining area with simply set wooden tables, warm oak tones, understated deep green and muted brass color accents, soft warm ambient lighting consistent with a refined Czech restaurant. Do not depict distinctive or verifiable venue-specific features. No people, no text, no signs, no logos, no brands. Editorial hospitality photography, natural realistic detail, warm unified light.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-jeviste.webp",
+      "alt": "Ilustrační divadelní atmosféra v teplém světle",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative photograph suggesting a restaurant atmosphere connected to a theatre: an empty, intimate performance stage seen from the edge of a dining venue, warm amber stage glow, restrained dark green and wood tones, a few simple tables softly out of focus in the foreground. Generic scene, no recognizable real venue or people. No text, signage, logos, brands, posters, or lettering. Warm cinematic editorial photography, natural-looking light, consistent with a welcoming restaurant image series.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-jidlo-1.webp",
+      "alt": "Ilustrační fotografie tradičně laděného restauračního jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative food photograph for a Czech restaurant gallery: an appetizing, unbranded plated traditional-style savory meal, prepared with familiar Central European ingredients, presented simply on a plain ceramic plate on a wooden table. Do not depict or name a specific menu item or claim it is a house specialty; keep components visually general and understated. Warm natural light, deep green and oak-toned surroundings softly blurred, no text, no logos, no people, refined editorial food photography.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-jidlo-2.webp",
+      "alt": "Ilustrační fotografie vydatného hlavního jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative food photograph: a different generic hearty Central European restaurant plate, with a plainly presented cooked meat portion and simple sides, without identifying a named dish or implying it is offered by a particular restaurant. Neutral ceramic plate, wooden tabletop, softly blurred warm oak and deep green background, gentle warm natural light matching a consistent restaurant photo series. No text, logos, labels, brands, or people. Editorial food photography, realistic and appetizing.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-dezert.webp",
+      "alt": "Ilustrační fotografie dezertu v restauračním prostředí",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative dessert photograph for a restaurant website gallery: a small, elegant, generic plated dessert with fruit and cream, no named or distinctive recipe, served on simple ceramic tableware on a wooden table. Warm natural light, restrained oak, deep green and muted brass palette softly blurred in the background, consistent refined editorial food photography. No text, logos, labels, brands, or people; do not imply a specific menu offering.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-zahradka.webp",
+      "alt": "Ilustrační atmosféra venkovního restauračního posezení",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative restaurant outdoor-dining atmosphere: a modest generic garden seating area with a few simple tables, leafy greenery, warm late-afternoon sunlight and understated natural materials. Avoid distinctive architecture, signage, views or details that could identify or falsely represent a real venue; this is an illustrative ambience image only. No people, text, logos, signs, or brands. Natural warm editorial hospitality photography consistent with the rest of the series.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "benar-galerie-exterier.webp",
+      "alt": "Ilustrační večerní atmosféra u vstupu do restaurace",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic illustrative exterior atmosphere for a restaurant website: a generic, welcoming entrance to a modest restaurant building at early evening, warm light glowing through windows, simple unmarked facade and subtle greenery. No distinctive landmarks, addresses, architecture, signs, text, logos, brands, or recognizable people; do not suggest a specific real building. Warm natural editorial hospitality photography in the same oak, deep-green and muted-gold mood as the image series.",
+      "model": "gpt-image-1-mini"
+    }
+  ]
+}
