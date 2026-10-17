@@ -1,0 +1,62 @@
+{
+  "generatedBy": "Honza (frontend_dev) via JARVIS",
+  "note": "Ilustrační AI fotografie — na webu označit jako ilustrační.",
+  "images": [
+    {
+      "file": "hero-benars-interier.webp",
+      "alt": "Ilustrační fotografie útulného interiéru restaurace Benar",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant photograph for a Czech restaurant website, wide cinematic composition of a welcoming, modest restaurant dining room, warm natural wood tones with restrained deep-green and muted brass accents, soft golden evening ambient light, tasteful and believable without ornate or distinctive architectural features, inviting empty tables in foreground, no people, no text, no signage, no logos, no brand marks, consistent warm color grading, realistic photography.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-benars-jidelna.webp",
+      "alt": "Ilustrační pohled do restaurančního interiéru",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph of a generic Czech restaurant dining area, a few neatly arranged tables and chairs, warm wood, subtle dark-green details and soft brass-toned light, calm inviting atmosphere, no distinctive venue-specific fixtures, no people, no text, no signage, no logos or brand marks, warm soft ambient lighting matching a cohesive restaurant photo series.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-divadelni-atmosfera.webp",
+      "alt": "Ilustrační divadelní atmosféra v restauraci",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph evoking a restaurant connected with a theatre, a quiet intimate dining space with a subtle out-of-focus theatrical curtain or stage-light glow visible in the distant background, no specific real venue details, warm wood and restrained green/brass color accents, no people, no text, no signage, no logos, soft golden evening light, natural documentary style.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-tradicni-jidlo-1.webp",
+      "alt": "Ilustrační fotografie tradičně laděného jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic close editorial food photograph for a Czech restaurant website: a freshly prepared, generic traditional Central European savory meal on a simple ceramic plate, appetizing but unidentifiable as any named house specialty, natural ingredients, no decorative text, no menu card, no branding, warm soft restaurant light, subtle green and wood tones in the blurred background, no people.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-tradicni-jidlo-2.webp",
+      "alt": "Ilustrační fotografie poledního jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial food photograph of a generic hearty Czech-style lunch served on a plain ceramic plate, meat with a simple side dish, deliberately not presented as a named specialty or tied to a specific menu item, realistic portion and natural colors, warm soft ambient restaurant lighting, muted green and wood background, no people, no text, no logos, no branding.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-tradicni-jidlo-3.webp",
+      "alt": "Ilustrační fotografie jídla se šťávou a přílohou",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic close-up editorial photograph of a generic Central European savory plate with sauce and a simple side, no recognizable signature presentation and no claim that it is a Benar menu item, plain crockery, natural appetizing food styling, warm golden restaurant lighting, shallow depth of field, muted green and wood tones, no people, no text, no logos or branding.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-dezert.webp",
+      "alt": "Ilustrační fotografie dezertu",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph of a simple generic restaurant dessert served on a plain ceramic plate, no distinctive named pastry or specialty, natural and understated presentation, warm soft golden light, muted green and wood tones in a softly blurred restaurant background, no people, no text, no logos, no branding.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "galerie-stul-a-jidlo.webp",
+      "alt": "Ilustrační fotografie prostřeného stolu a jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant photograph of a neatly set wooden dining table with plain plates, cutlery and one generic freshly served meal, welcoming Czech restaurant atmosphere, no identifiable specialty or menu claim, soft warm evening lighting with restrained dark-green and brass accents, no people, no text, no signage, no logos, no branding.",
+      "model": "gpt-image-1-mini"
+    }
+  ]
+}
