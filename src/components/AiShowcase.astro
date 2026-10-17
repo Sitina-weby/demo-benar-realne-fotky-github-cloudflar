@@ -1,0 +1,42 @@
+---
+import { siteConfig } from "../data/site.config";
+const { aiImages, menuLink } = siteConfig;
+const items = aiImages.slice(1);
+---
+
+<section class="section section--dark" id="atmosfera">
+  <div class="container">
+    <p class="eyebrow">Inspirace a atmosféra</p>
+    <h2>Chuť i prostředí v obrazech</h2>
+    <p class="ai__note">
+      Ilustrační AI fotografie — nejde o skutečné snímky jídel ani prostor Benaru.
+      Reálné fotografie restaurace jsou v galerii níže.
+    </p>
+    <div class="ai__grid">
+      {
+        items.map((img, i) => (
+          <figure class:list={["ai__item", i === 0 && "ai__item--wide"]}>
+            <img src={img.src} alt={img.alt} loading="lazy" />
+            <figcaption>Ilustrační AI foto</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="ai__cta">
+      <a href={menuLink.href} class="btn btn-primary">{menuLink.label} →</a>
+    </p>
+    <p class="ai__note ai__note--center">{menuLink.note}</p>
+  </div>
+</section>
+
+<style>
+  .ai__note { font-size: var(--fs-sm); font-style: italic; opacity: 0.85; }
+  .ai__note--center { text-align: center; }
+  .ai__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-block: var(--space-8); }
+  .ai__item { position: relative; margin: 0; border-radius: var(--radius-lg); overflow: hidden; }
+  .ai__item img { width: 100%; height: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+  .ai__item figcaption { position: absolute; left: var(--space-3); bottom: var(--space-3); background: rgba(38, 51, 42, 0.8); color: #fff; font-size: var(--fs-xs); padding: 2px var(--space-3); border-radius: var(--radius-pill); }
+  .ai__cta { text-align: center; margin-bottom: var(--space-3); }
+  @media (min-width: 640px) { .ai__grid { grid-template-columns: repeat(2, 1fr); } .ai__item--wide { grid-column: 1 / -1; } }
+  @media (min-width: 992px) { .ai__grid { grid-template-columns: repeat(3, 1fr); } .ai__item--wide { grid-column: span 2; } }
+</style>

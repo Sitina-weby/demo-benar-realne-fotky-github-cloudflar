@@ -1,5 +1,10 @@
 # Demo web — Restaurace Benar (Litvínov)
 
+> **Redesign (issue #14):** sticky hlavička s odkazem na Jídelní lístek (`/jidelni-listek`) a sekce `AiShowcase` s 8 ilustračními AI fotkami (`public/images/ai/`, popisky v `manifest.json`, na webu označeno „Ilustrační AI foto“). Hero a galerie zůstávají u reálných fotek Benaru.
+> **Inspirace Srdcovkou:** web srdcovka.cz se nepodařilo načíst (chybný TLS certifikát hostingu), vizuál nebyl ověřen — redesign vychází jen z obecné teplé „bistro“ estetiky.
+> **Doplní klient:** otevírací doba, denní menu, stálý lístek a ceny, recenze, e-mail a IČO jsou vzorové/neověřené (viz „Předpoklady“); nic nebylo vymyšleno nově.
+> Náhled: `.jarvis-preview/index.html`. Spuštění: `npm ci && npm run build && npm test`.
+
 Statický jednostránkový web (+ 1 podstránka s plným jídelním lístkem) postavený
 v [Astro](https://astro.build) jako **obchodní ukázka (demo) produktu „weby pro
 lokální restaurace"**.
