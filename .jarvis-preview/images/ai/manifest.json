@@ -1,0 +1,62 @@
+{
+  "generatedBy": "Honza (frontend_dev) via JARVIS",
+  "note": "Ilustrační AI fotografie — na webu označit jako ilustrační.",
+  "images": [
+    {
+      "file": "hero-restaurace.webp",
+      "alt": "Ilustrační fotografie útulné restaurace s prostřeným stolem",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant website hero photograph, inviting traditional Czech restaurant dining room with warm natural oak tones and restrained dark green and brass accents, an elegantly set table with a few generic plated dishes softly visible in the foreground, intimate theatrical warmth without theatrical props, soft golden evening light, natural shadows, refined but unpretentious atmosphere, wide cinematic composition with uncluttered darker negative space on the left for website headline overlay, no people, no text, no signage, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "jidelni-atmosfera.webp",
+      "alt": "Ilustrační fotografie čerstvě připraveného jídla v restauraci",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial food photograph for a restaurant website gallery, a freshly prepared generic hearty Central European restaurant meal on a simple ceramic plate, seasonal vegetables and understated garnish, no identifiable signature dish and no implied menu claim, warm wood table, soft golden evening window light, natural appetizing colors, close three-quarter angle, consistent warm understated restaurant photography, no people, no text, no lettering, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "jidlo-detail.webp",
+      "alt": "Ilustrační detail servírovaného hlavního jídla",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic close-up editorial food photograph, an elegant but approachable generic restaurant plate with a carefully prepared main course and simple seasonal side, ingredients kept nonspecific and not identifiable as a particular menu item, warm wooden table, gentle golden ambient light, shallow depth of field, realistic food texture, consistent warm restaurant photography, no people, no text, no lettering, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "dezert-ilustrace.webp",
+      "alt": "Ilustrační fotografie dezertu servírovaného v restauraci",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant photograph of a simple generic plated dessert, delicate pastry and fruit garnish without specifying a named dish or claiming it is on the menu, ceramic plate on a warm wooden table, soft golden light, understated styling, natural realistic textures, shallow depth of field, consistent warm restaurant photography, no people, no text, no lettering, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "interier-restaurace.webp",
+      "alt": "Ilustrační fotografie útulného interiéru restaurace",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial interior photograph of a welcoming traditional restaurant dining room, warm wood surfaces, understated dark green and brass-toned accents, neatly arranged tables and soft ambient pendant lighting, generic interior with no distinctive architectural claims, calm evening mood, natural realistic materials, consistent warm color grade, no people, no text, no signage, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "divadelni-atmosfera.webp",
+      "alt": "Ilustrační fotografie komorní divadelní atmosféry",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial photograph suggesting a restaurant connected with a local theatre through atmosphere only: a small intimate performance stage seen from a softly lit dining-room vantage, simple red curtain and warm stage lights, no performers, no identifiable venue details, no distinctive claims about the actual premises, elegant subdued composition, consistent warm golden light and natural shadows, no people, no text, no signage, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "stul-v-restauraci.webp",
+      "alt": "Ilustrační fotografie prostřeného stolu v restauraci",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant atmosphere photograph, close view of a carefully set dining table with plain plates, cutlery, folded linen and a small unmarked candle, warmly lit wooden restaurant interior softly blurred in the background, welcoming evening ambience, generic furnishings without claiming details of a specific venue, consistent warm golden light, no people, no text, no signage, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    },
+    {
+      "file": "kuchyne-servirovani.webp",
+      "alt": "Ilustrační fotografie připraveného jídla před servírováním",
+      "label": "Ilustrační AI foto",
+      "prompt": "Photorealistic editorial restaurant photograph of a generic freshly prepared meal being set on a pass for service, only the plate and hands-free serving counter visible, nonspecific Central European comfort-food presentation with no identifiable named dish or menu claim, warm wood and subtle dark green background accents, soft golden light, realistic appetizing textures, consistent restaurant photography, no people, no text, no lettering, no logos, no brands, no watermark.",
+      "model": "gpt-image-1-mini"
+    }
+  ]
+}

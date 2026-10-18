@@ -266,6 +266,24 @@ export const siteConfig = {
     ] as MenuCategory[],
   },
 
+  // Ilustrační AI fotografie (public/images/ai/, alt z manifest.json). NEJSOU fotky Benaru.
+  aiImages: [
+    { src: "/images/ai/hero-restaurace.webp", alt: "Ilustrační fotografie útulné restaurace s prostřeným stolem" },
+    { src: "/images/ai/jidelni-atmosfera.webp", alt: "Ilustrační fotografie čerstvě připraveného jídla v restauraci" },
+    { src: "/images/ai/jidlo-detail.webp", alt: "Ilustrační detail servírovaného hlavního jídla" },
+    { src: "/images/ai/dezert-ilustrace.webp", alt: "Ilustrační fotografie dezertu servírovaného v restauraci" },
+    { src: "/images/ai/interier-restaurace.webp", alt: "Ilustrační fotografie útulného interiéru restaurace" },
+    { src: "/images/ai/divadelni-atmosfera.webp", alt: "Ilustrační fotografie komorní divadelní atmosféry" },
+    { src: "/images/ai/stul-v-restauraci.webp", alt: "Ilustrační fotografie prostřeného stolu v restauraci" },
+    { src: "/images/ai/kuchyne-servirovani.webp", alt: "Ilustrační fotografie připraveného jídla před servírováním" },
+  ] as { src: string; alt: string }[],
+
+  menuLink: {
+    href: "/jidelni-listek",
+    label: "Jídelní lístek",
+    note: "Jídla a ceny v lístku jsou vzorové — aktuální nabídku a ceny doplní restaurace.",
+  },
+
   gallery: {
     note:
       "Reálné fotografie restaurace Benar a okolí (Litvínov, Krušné hory). " +

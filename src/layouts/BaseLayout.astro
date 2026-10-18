@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SiteHeader from "../components/SiteHeader.astro";
 import { siteConfig } from "../data/site.config";
 
 interface Props {
@@ -24,6 +25,7 @@ const { title, description = siteConfig.hero.subheadline } = Astro.props;
   </head>
   <body>
     <a href="#hlavni-obsah" class="skip-link">Přeskočit na hlavní obsah</a>
+    <SiteHeader />
     <slot />
   </body>
 </html>
